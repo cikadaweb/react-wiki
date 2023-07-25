@@ -1,7 +1,12 @@
-import logo from './logo.svg';
-import './App.css';
+import { Button } from "antd";
+
+import logo from "@/logo.svg";
+
+import "@/App.css";
 
 function App() {
+  const sayHello: string = "Vue";
+
   return (
     <div className="App">
       <header className="App-header">
@@ -15,7 +20,8 @@ function App() {
           target="_blank"
           rel="noopener noreferrer"
         >
-          Learn React
+          <div>Hello from {sayHello}</div>
+          <Button type="primary">Go to Vue</Button>
         </a>
       </header>
     </div>
