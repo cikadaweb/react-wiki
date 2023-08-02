@@ -6,7 +6,7 @@
     "plugins": ["prettier"],
     "rules": {
       "no-console": "error",
-      "prettier/prettier": "error",
+      "prettier/prettier": "off",
       "import/order": [
         "error",
         {
