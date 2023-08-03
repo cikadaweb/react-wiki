@@ -1,10 +1,12 @@
 import './App.css';
-import SomePage1 from './pages/SomePage1';
+import PageWithUseRef from './pages/PageWithUseRef';
 
 const App = () => {
   return (
     <div className='app'>
-      <SomePage1></SomePage1>
+      <div className="container">
+      <PageWithUseRef />
+      </div>
     </div>
   );
 };
