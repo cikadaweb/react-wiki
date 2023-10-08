@@ -1,0 +1,18 @@
+.mouse-observer {
+  position: relative;
+  width: 500px;
+  height: 500px;
+  border: 2px solid purple;
+  margin: 10px;
+  overflow: hidden;
+  cursor: none;
+}
+
+.mouse-observer__mouse {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  background-color: lightcoral;
+  border-radius: 50%;
+  pointer-events: none;
+}
