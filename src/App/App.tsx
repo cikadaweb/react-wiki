@@ -1,11 +1,11 @@
 import './App.css';
-import PageWithUseRef from './pages/PageWithUseRef';
+import MemoDemon from "@/App/pages/MemoDemo";
 
 const App = () => {
   return (
     <div className='app'>
       <div className="container">
-      <PageWithUseRef />
+      <MemoDemon />
       </div>
     </div>
   );
