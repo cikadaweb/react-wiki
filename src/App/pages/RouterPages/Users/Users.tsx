@@ -1,4 +1,4 @@
-import {useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 import style from './Users.module.css';
 import USERS from '@/config/users';
@@ -21,7 +21,7 @@ const Users = () => {
     return (
         <ul className={style.list}>
             {USERS.map(user => (
-                <li className={style.item} key={user.id} onClick={() => navigate(`/user/${user.id}`)}>
+                <li className={style.item} key={user.id} onClick={() => navigate(`/users/${user.id}`)}>
                     {user.name}
                 </li>
             ))}
