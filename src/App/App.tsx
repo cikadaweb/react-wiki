@@ -1,11 +1,11 @@
 import './App.css';
 import React from 'react';
 
-import TestHypothesis from '@/App/pages/TestHypothesis';
+import PrintTablePage from '@/App/pages/PrintTablePage';
 
 const App = () => {
     return (
-        <TestHypothesis />
+        <PrintTablePage />
     );
 };
 
