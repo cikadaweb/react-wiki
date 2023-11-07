@@ -1,11 +1,11 @@
 import './App.css';
-import MemoDemon from "@/App/pages/MemoDemo";
+import KeysDemo from "@/App/pages/KeysDemo";
 
 const App = () => {
   return (
     <div className='app'>
       <div className="container">
-      <MemoDemon />
+      <KeysDemo />
       </div>
     </div>
   );
