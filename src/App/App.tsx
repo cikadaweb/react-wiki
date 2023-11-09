@@ -1,11 +1,11 @@
 import './App.css';
 import React from 'react';
 
-import PrintTablePage from '@/App/pages/PrintTablePage';
+import UsersPage from '@/App/pages/UsersPageAPI/UsersPage';
 
 const App = () => {
     return (
-        <PrintTablePage />
+        <UsersPage />
     );
 };
 
