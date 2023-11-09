@@ -1,14 +1,12 @@
 import './App.css';
-import KeysDemo from "@/App/pages/KeysDemo";
+import React from 'react';
+
+import UsersPage from '@/App/pages/UsersPageAPI/UsersPage';
 
 const App = () => {
-  return (
-    <div className='app'>
-      <div className="container">
-      <KeysDemo />
-      </div>
-    </div>
-  );
+    return (
+        <UsersPage />
+    );
 };
 
 export default App;
