@@ -7,3 +7,8 @@
 .temp {
     width: 300px;
 }
+
+.dashboard__card {
+    min-height: 200px;
+    height: 100%;
+}
