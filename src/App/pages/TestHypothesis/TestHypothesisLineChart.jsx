@@ -438,404 +438,408 @@ const TestHypothesis = () => {
         "*": {
             "entries": [
                 {
-                    "time": 1699028452330,
-                    "mean": 0
+                    "time": 1699259638104,
+                    "mean": null
                 },
                 {
-                    "time": 1699062321132,
-                    "mean": 0
+                    "time": 1699285558838,
+                    "mean": null
                 },
                 {
-                    "time": 1699096189934,
-                    "mean": 0
+                    "time": 1699311479572,
+                    "mean": null
                 },
                 {
-                    "time": 1699130058736,
-                    "mean": 0
+                    "time": 1699337400306,
+                    "mean": null
                 },
                 {
-                    "time": 1699163927538,
-                    "mean": 0
+                    "time": 1699363321040,
+                    "mean": null
                 },
                 {
-                    "time": 1699197796340,
-                    "mean": 0
+                    "time": 1699389241774,
+                    "mean": null
                 },
                 {
-                    "time": 1699231665142,
-                    "mean": 0
+                    "time": 1699415162508,
+                    "mean": null
                 },
                 {
-                    "time": 1699265533944,
-                    "mean": 0
+                    "time": 1699441083242,
+                    "mean": null
                 },
                 {
-                    "time": 1699299402746,
-                    "mean": 0
+                    "time": 1699467003976,
+                    "mean": null
                 },
                 {
-                    "time": 1699333271548,
-                    "mean": 0
+                    "time": 1699492924710,
+                    "mean": null
                 },
                 {
-                    "time": 1699367140350,
-                    "mean": 0
+                    "time": 1699518845444,
+                    "mean": null
                 },
                 {
-                    "time": 1699401009152,
-                    "mean": 0
+                    "time": 1699544766178,
+                    "mean": null
                 },
                 {
-                    "time": 1699434877954,
-                    "mean": 0
+                    "time": 1699570686912,
+                    "mean": null
                 },
                 {
-                    "time": 1699468746756,
-                    "mean": 0
+                    "time": 1699596607646,
+                    "mean": null
                 },
                 {
-                    "time": 1699502615558,
-                    "mean": 0
+                    "time": 1699622528380,
+                    "mean": null
                 },
                 {
-                    "time": 1699536484360,
-                    "mean": 0
+                    "time": 1699648449114,
+                    "mean": null
                 },
                 {
-                    "time": 1699570353162,
-                    "mean": 0
+                    "time": 1699674369848,
+                    "mean": null
                 },
                 {
-                    "time": 1699604221964,
-                    "mean": 0
+                    "time": 1699700290582,
+                    "mean": null
                 },
                 {
-                    "time": 1699638090766,
-                    "mean": 0
+                    "time": 1699726211316,
+                    "mean": null
                 },
                 {
-                    "time": 1699671959568,
-                    "mean": 0
+                    "time": 1699752132050,
+                    "mean": null
                 },
                 {
-                    "time": 1699705828370,
-                    "mean": 0
+                    "time": 1699778052784,
+                    "mean": null
                 },
                 {
-                    "time": 1699739697172,
-                    "mean": 0
+                    "time": 1699803973518,
+                    "mean": null
                 },
                 {
-                    "time": 1699773565974,
-                    "mean": 0
+                    "time": 1699829894252,
+                    "mean": null
                 },
                 {
-                    "time": 1699807434776,
-                    "mean": 0
+                    "time": 1699855814986,
+                    "mean": null
                 },
                 {
-                    "time": 1699841303578,
-                    "mean": 0
+                    "time": 1699881735720,
+                    "mean": null
                 },
                 {
-                    "time": 1699875172380,
-                    "mean": 0
+                    "time": 1699907656454,
+                    "mean": null
                 },
                 {
-                    "time": 1699909041182,
-                    "mean": 0
+                    "time": 1699933577188,
+                    "mean": null
                 },
                 {
-                    "time": 1699942909984,
-                    "mean": 0
+                    "time": 1699959497922,
+                    "mean": null
                 },
                 {
-                    "time": 1699976778786,
-                    "mean": 0
+                    "time": 1699985418656,
+                    "mean": null
                 },
                 {
-                    "time": 1700010647588,
-                    "mean": 0
+                    "time": 1700011339390,
+                    "mean": null
                 },
                 {
-                    "time": 1700044516390,
-                    "mean": 0
+                    "time": 1700037260124,
+                    "mean": null
                 },
                 {
-                    "time": 1700078385192,
-                    "mean": 0
+                    "time": 1700063180858,
+                    "mean": null
                 },
                 {
-                    "time": 1700112253994,
-                    "mean": 0
+                    "time": 1700089101592,
+                    "mean": null
                 },
                 {
-                    "time": 1700146122796,
-                    "mean": 0
+                    "time": 1700115022326,
+                    "mean": null
                 },
                 {
-                    "time": 1700179991598,
-                    "mean": 0
+                    "time": 1700140943060,
+                    "mean": null
                 },
                 {
-                    "time": 1700213860400,
-                    "mean": 0
+                    "time": 1700166863794,
+                    "mean": null
                 },
                 {
-                    "time": 1700247729202,
-                    "mean": 0
+                    "time": 1700192784528,
+                    "mean": null
                 },
                 {
-                    "time": 1700281598004,
-                    "mean": 0
+                    "time": 1700218705262,
+                    "mean": null
                 },
                 {
-                    "time": 1700315466806,
-                    "mean": 0
+                    "time": 1700244625996,
+                    "mean": null
                 },
                 {
-                    "time": 1700349335608,
-                    "mean": 0
+                    "time": 1700270546730,
+                    "mean": null
                 },
                 {
-                    "time": 1700383204410,
-                    "mean": 0
+                    "time": 1700296467464,
+                    "mean": null
                 },
                 {
-                    "time": 1700417073212,
-                    "mean": 0
+                    "time": 1700322388198,
+                    "mean": null
                 },
                 {
-                    "time": 1700450942014,
-                    "mean": 0
+                    "time": 1700348308932,
+                    "mean": null
                 },
                 {
-                    "time": 1700484810816,
-                    "mean": 0
+                    "time": 1700374229666,
+                    "mean": null
                 },
                 {
-                    "time": 1700518679618,
-                    "mean": 0
+                    "time": 1700400150400,
+                    "mean": null
                 },
                 {
-                    "time": 1700552548420,
-                    "mean": 0
+                    "time": 1700426071134,
+                    "mean": null
                 },
                 {
-                    "time": 1700586417222,
-                    "mean": 0
+                    "time": 1700451991868,
+                    "mean": null
                 },
                 {
-                    "time": 1700620286024,
-                    "mean": 0
+                    "time": 1700477912602,
+                    "mean": null
                 },
                 {
-                    "time": 1700654154826,
-                    "mean": 0
+                    "time": 1700503833336,
+                    "mean": null
                 },
                 {
-                    "time": 1700688023628,
-                    "mean": 0
+                    "time": 1700529754070,
+                    "mean": null
                 },
                 {
-                    "time": 1700721892430,
-                    "mean": 0
+                    "time": 1700555674804,
+                    "mean": null
                 },
                 {
-                    "time": 1700755761232,
-                    "mean": 0
+                    "time": 1700581595538,
+                    "mean": null
                 },
                 {
-                    "time": 1700789630034,
-                    "mean": 0
+                    "time": 1700607516272,
+                    "mean": null
                 },
                 {
-                    "time": 1700823498836,
-                    "mean": 0
+                    "time": 1700633437006,
+                    "mean": null
                 },
                 {
-                    "time": 1700857367638,
-                    "mean": 0
+                    "time": 1700659357740,
+                    "mean": null
                 },
                 {
-                    "time": 1700891236440,
-                    "mean": 0
+                    "time": 1700685278474,
+                    "mean": null
                 },
                 {
-                    "time": 1700925105242,
-                    "mean": 0
+                    "time": 1700711199208,
+                    "mean": null
                 },
                 {
-                    "time": 1700958974044,
-                    "mean": 0
+                    "time": 1700737119942,
+                    "mean": null
                 },
                 {
-                    "time": 1700992842846,
-                    "mean": 0
+                    "time": 1700763040676,
+                    "mean": null
                 },
                 {
-                    "time": 1701026711648,
-                    "mean": 0
+                    "time": 1700788961410,
+                    "mean": null
                 },
                 {
-                    "time": 1701060580450,
-                    "mean": 0
+                    "time": 1700814882144,
+                    "mean": null
                 },
                 {
-                    "time": 1701094449252,
-                    "mean": 0
+                    "time": 1700840802878,
+                    "mean": null
                 },
                 {
-                    "time": 1701128318054,
-                    "mean": 0
+                    "time": 1700866723612,
+                    "mean": null
                 },
                 {
-                    "time": 1701162186856,
-                    "mean": 0
+                    "time": 1700892644346,
+                    "mean": null
                 },
                 {
-                    "time": 1701196055658,
-                    "mean": 0
+                    "time": 1700918565080,
+                    "mean": null
                 },
                 {
-                    "time": 1701229924460,
-                    "mean": 0.008745834762733268
+                    "time": 1700944485814,
+                    "mean": null
                 },
                 {
-                    "time": 1701263793262,
-                    "mean": 0.018067535160042118
+                    "time": 1700970406548,
+                    "mean": null
                 },
                 {
-                    "time": 1701297662064,
-                    "mean": 0.018741043689951203
+                    "time": 1700996327282,
+                    "mean": null
                 },
                 {
-                    "time": 1701331530866,
-                    "mean": 0.017446011608023664
+                    "time": 1701022248016,
+                    "mean": null
                 },
                 {
-                    "time": 1701365399668,
-                    "mean": 0
+                    "time": 1701048168750,
+                    "mean": null
                 },
                 {
-                    "time": 1701399268470,
-                    "mean": 0.03640409286623668
+                    "time": 1701074089484,
+                    "mean": null
                 },
                 {
-                    "time": 1701433137272,
-                    "mean": 0.04597913420593562
+                    "time": 1701100010218,
+                    "mean": null
                 },
                 {
-                    "time": 1701467006074,
-                    "mean": 0.030470775122937024
+                    "time": 1701125930952,
+                    "mean": null
                 },
                 {
-                    "time": 1701500874876,
-                    "mean": 0.02763693888866423
+                    "time": 1701151851686,
+                    "mean": null
                 },
                 {
-                    "time": 1701534743678,
-                    "mean": 0.027699293253715736
+                    "time": 1701177772420,
+                    "mean": null
                 },
                 {
-                    "time": 1701568612480,
-                    "mean": 0.02698310899508663
+                    "time": 1701203693154,
+                    "mean": null
                 },
                 {
-                    "time": 1701602481282,
-                    "mean": 0.025696996633003375
+                    "time": 1701229613888,
+                    "mean": 171791.9713292789
                 },
                 {
-                    "time": 1701636350084,
-                    "mean": 0.025922977790821432
+                    "time": 1701255534622,
+                    "mean": 653680.9175925925
                 },
                 {
-                    "time": 1701670218886,
-                    "mean": 0
+                    "time": 1701281455356,
+                    "mean": 1163342.9351651745
                 },
                 {
-                    "time": 1701704087688,
-                    "mean": 0
+                    "time": 1701307376090,
+                    "mean": 1658674.6706790123
                 },
                 {
-                    "time": 1701737956490,
-                    "mean": 0
+                    "time": 1701333296824,
+                    "mean": 2159183.2580645164
                 },
                 {
-                    "time": 1701771825292,
-                    "mean": 0
+                    "time": 1701359217558,
+                    "mean": null
                 },
                 {
-                    "time": 1701805694094,
-                    "mean": 0
+                    "time": 1701385138292,
+                    "mean": null
                 },
                 {
-                    "time": 1701839562896,
-                    "mean": 0
+                    "time": 1701411059026,
+                    "mean": 1350563.3485873458
                 },
                 {
-                    "time": 1701873431698,
-                    "mean": 0
+                    "time": 1701436979760,
+                    "mean": 2848748.3543209876
                 },
                 {
-                    "time": 1701907300500,
-                    "mean": 0
+                    "time": 1701462900494,
+                    "mean": 3599789.142901235
                 },
                 {
-                    "time": 1701941169302,
-                    "mean": 0
+                    "time": 1701488821228,
+                    "mean": 4315039.656992899
                 },
                 {
-                    "time": 1701975038104,
-                    "mean": 0
+                    "time": 1701514741962,
+                    "mean": 5032063.78425926
                 },
                 {
-                    "time": 1702008906906,
-                    "mean": 0.0010833464370979845
+                    "time": 1701540662696,
+                    "mean": 5750292.351234568
                 },
                 {
-                    "time": 1702042775708,
-                    "mean": 0.002455062852588911
+                    "time": 1701566583430,
+                    "mean": 6455837.926520531
                 },
                 {
-                    "time": 1702076644510,
-                    "mean": 0
+                    "time": 1701592504164,
+                    "mean": 7120894.195679013
                 },
                 {
-                    "time": 1702110513312,
-                    "mean": 0
+                    "time": 1701618424898,
+                    "mean": 7790646.062962963
                 },
                 {
-                    "time": 1702144382114,
-                    "mean": 0
+                    "time": 1701644345632,
+                    "mean": 8462764.23464032
                 },
                 {
-                    "time": 1702178250916,
-                    "mean": 0
+                    "time": 1701670266366,
+                    "mean": 1271430.5177590626
                 },
                 {
-                    "time": 1702212119718,
-                    "mean": 0
+                    "time": 1701696187100,
+                    "mean": null
                 },
                 {
-                    "time": 1702245988520,
-                    "mean": 0
+                    "time": 1701722107834,
+                    "mean": null
                 },
                 {
-                    "time": 1702279857322,
-                    "mean": 0.017452683657446785
+                    "time": 1701748028568,
+                    "mean": null
                 },
                 {
-                    "time": 1702313726124,
-                    "mean": 0
+                    "time": 1701773949302,
+                    "mean": null
                 },
                 {
-                    "time": 1702347594926,
-                    "mean": 0.013799145293906512
+                    "time": 1701799870036,
+                    "mean": null
                 },
                 {
-                    "time": 1702381463728,
-                    "mean": 0
+                    "time": 1701825790770,
+                    "mean": null
+                },
+                {
+                    "time": 1701851711504,
+                    "mean": null
                 }
             ]
         },
@@ -862,40 +866,140 @@ const TestHypothesis = () => {
         }
       
         setChartData({ data: gdata });
+        
     };
-
-    const CustomTooltip = ({ active, payload, label }) => {
-        if (active) {
-            return (
-            <div className={style.chart__tooltip}>
-                <div className="label">Время: {`${format(payload[0].payload.time, 'HH:mm:ss')}`}</div>
-                <div className="label">Скорость: {`${payload[0].payload.mean.toFixed(2)}`}</div>
-            </div>
-            );
-        }
-    
-        return null;
-    }
 
     return (
         <div className="container">
-        <ResponsiveContainer width={500} height={300}>
-            <LineChart data={chartData.data} margin={{ top: 30, right: 30, left: 30, bottom: 30 }}>
-            <XAxis
-                type="number"
-                dataKey="time"
-                domain={['dataMin', 'dataMax']}
-                tickFormatter={unixTime => format(new Date(unixTime), 'HH:mm:ss')}
-            >
-            </XAxis>
-            <Tooltip
-            content={<CustomTooltip payload={chartData.data} />}
-            />
-            <YAxis type="number" domain={[0, 'auto']}/>
+                    {/* <Row gutter={[8, 8]}>
+        <Col span={12}>
+          <Row gutter={[16, 16]}>
+            <Col span={12}>
+              <Card
+                title="Используемые правила"
+                className={style.dashboard__card}
+                bordered={true}
+                size={'small'}
+              >
+                <div>
+                  0 правил
+                </div>
+              </Card>
+            </Col>
 
-            <Line dataKey="mean" name="Packets" type={'natural'} dot={false} />
-            </LineChart>
-        </ResponsiveContainer>
+            <Col span={12}>
+              <Card
+                title="Эврестический анализ"
+                className={style.dashboard__card}
+              >
+                <div>
+                  0 правил
+                </div>
+              </Card>
+            </Col>
+
+            <Col span={12}>
+              <Card
+                title="Трафик пакетов"
+                className={style.dashboard__card}
+              >
+                <ResponsiveContainer width={250} height={200}>
+                  <LineChart data={chartData.data} margin={{ top: 30, right: 30, left: 30, bottom: 30 }}>
+                    <CartesianGrid />
+                    <XAxis
+                      type="number"
+                      dataKey="time"
+                      domain={['dataMin', 'dataMax']}
+                      tickFormatter={unixTime => format(new Date(unixTime), 'HH:mm:ss')}
+                    >
+                      <Label value={'Time'} position="bottom" style={{ textAnchor: 'middle' }} />
+                    </XAxis>
+                    <YAxis>
+                      <Label value={'Packets'} position="left" angle={-90} style={{ textAnchor: 'middle' }} />
+                    </YAxis>
+                    <Tooltip />
+                    <Line dataKey="mean" name="Packets" type={'natural'} dot={false} />
+                  </LineChart>
+                </ResponsiveContainer>
+              </Card>
+            </Col>
+
+            <Col span={12}>
+              <Card
+                title="Используемые правила"
+                className={style.dashboard__card}
+              >
+                <div>
+                  Непринятые пакеты
+                </div>
+              </Card>
+            </Col>
+          </Row>
+        </Col>
+
+        <Col span={12}>
+          <Row gutter={[16, 16]}>
+            <Col span={12}>
+              <Card
+                title="Используемые правила"
+                className={style.dashboard__card}
+              >
+                <div>
+                  Непринятые пакеты
+                </div>
+              </Card>
+            </Col>
+            <Col span={12}>
+              <Card
+                title="Используемые правила"
+                className={style.dashboard__card}
+              >
+                <div>
+                  Непринятые пакеты
+                </div>
+              </Card>
+            </Col>
+            <Col span={12}>
+              <Card
+                title="Используемые правила"
+                className={style.dashboard__card}
+              >
+                <div>
+                  Непринятые пакеты
+                </div>
+              </Card>
+            </Col>
+            <Col span={12}>
+              <Card
+                title="Используемые правила"
+                className={style.dashboard__card}
+              >
+                <div>
+                  Непринятые пакеты
+                </div>
+              </Card>
+            </Col>
+          </Row>
+        </Col>
+      </Row> */}
+        <ResponsiveContainer width={500} height={300}>
+                  <LineChart data={chartData.data} margin={{ top: 30, right: 30, left: 30, bottom: 30 }}>
+                    <CartesianGrid />
+                    <XAxis
+                      type="number"
+                      dataKey="time"
+                      domain={['dataMin', 'dataMax']}
+                      tickFormatter={unixTime => format(new Date(unixTime), 'HH:mm:ss')}
+                    >
+                      <Label value={'Time'} position="bottom" style={{ textAnchor: 'middle' }} />
+                    </XAxis>
+                    <YAxis>
+                      <Label value={'Packets'} position="left" angle={-90} style={{ textAnchor: 'middle' }} />
+                    </YAxis>
+                    <Tooltip />
+                    <Line dataKey="mean" name="Packets" type={'natural'} dot={false} />
+                  </LineChart>
+                </ResponsiveContainer>
         </div>
     );
 };
