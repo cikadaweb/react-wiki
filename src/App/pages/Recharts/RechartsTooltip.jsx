@@ -4,7 +4,7 @@ import { Row, Col, Card } from 'antd';
 import { format } from 'date-fns';
 import { ResponsiveContainer, LineChart, CartesianGrid, XAxis, YAxis, Label, Tooltip, Line } from 'recharts';
 
-import style from '@/App/pages/TestHypothesis/TestHypothesis.module.css';
+import style from '@/App/pages/Recharts/Recharts.module.css';
 import {log} from '@/utils/log';
 
 

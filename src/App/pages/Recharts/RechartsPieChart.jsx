@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { Row, Col, Card } from 'antd';
 import { Tooltip, PieChart, Pie, Cell } from 'recharts';
 
-import style from '@/App/pages/TestHypothesis/TestHypothesis.module.css';
+import style from '@/App/pages/Recharts/Recharts.module.css';
 import {log} from '@/utils/log';
 
 
