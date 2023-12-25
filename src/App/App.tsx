@@ -1,11 +1,11 @@
 import './App.css';
 import React from 'react';
 
-import TestHypothesis from '@/App/pages/TestHypothesis';
+import ReduxPage from "@/App/pages/ReduxPage";
 
 const App = () => {
     return (
-        <TestHypothesis />
+        <ReduxPage />
     );
 };
 
