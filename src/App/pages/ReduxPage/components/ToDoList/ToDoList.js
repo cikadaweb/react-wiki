@@ -1,14 +1,16 @@
 import React from 'react';
-import PropTypes from 'prop-types';
-import Todo from './Todo';
 
-const TodoList = ({ todos, onTodoClick }) => (
+import PropTypes from 'prop-types';
+
+import Todo from '@/App/pages/ReduxPage/components/ToDo';
+
+const TodoList = ({ todos, toggleTodo }) => (
     <ul>
-        {todos.map((todo, index) => (
+        {todos.map((todo) => (
             <Todo
-                key={index}
+                key={todo.id}
                 {...todo}
-                onClick={() => onTodoClick(index)}
+                onClick={() => toggleTodo(todo.id)}
             />
         ))}
     </ul>
@@ -22,7 +24,7 @@ TodoList.propTypes = {
             text: PropTypes.string.isRequired,
         }).isRequired
     ).isRequired,
-    onTodoClick: PropTypes.func.isRequired,
+    toggleTodo: PropTypes.func.isRequired,
 };
 
 export default TodoList;
