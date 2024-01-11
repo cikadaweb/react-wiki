@@ -1,12 +1,10 @@
-import './App.css';
-import React from 'react';
+import "./App.css";
+import React from "react";
 
-import ReduxPage from "@/App/pages/ReduxPage";
+import ElasticPage from "@/App/pages/Elastic";
 
 const App = () => {
-    return (
-        <ReduxPage />
-    );
+  return <ElasticPage />;
 };
 
 export default App;
