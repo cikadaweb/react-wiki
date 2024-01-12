@@ -21,193 +21,238 @@ import {
 import { faker } from "@faker-js/faker";
 
 const serverData = {
-  took: 5,
-  timed_out: false,
-  _shards: {
-    total: 2,
-    successful: 2,
-    skipped: 0,
-    failed: 0,
-  },
-  hits: {
-    total: {
-      value: 160,
-      relation: "eq",
+  data: {
+    took: 4,
+    timed_out: false,
+    _shards: {
+      total: 2,
+      successful: 2,
+      skipped: 0,
+      failed: 0,
     },
-    max_score: null,
-    hits: [
-      {
-        _index: "sov_uu-audit-test-2024.01.11",
-        _id: "bcBk-IwBKj9v7JGHEuxS",
-        _score: null,
-        _source: {
-          timestamp: "2024-01-11T11:59:12.369Z",
-          user: "admin",
-          type: "AGENTS_INFO_TYPE",
-          ip: "127.0.0.1",
-          comment: {
-            type: "os",
+    hits: {
+      total: {
+        value: 14,
+        relation: "eq",
+      },
+      max_score: null,
+      hits: [
+        {
+          _index: "sov_uu-audit-test-2024.01.12",
+          _id: "FsD1_IwBKj9v7JGHXvbP",
+          _score: null,
+          _source: {
+            timestamp: "2024-01-12T09:16:23.431Z",
+            user: "admin",
+            type: "SECURITY_CURRENT_POLICIES",
+            ip: "127.0.0.1",
+            comment: {},
+            component: "SOV_WebUI",
+            result: true,
           },
-          component: "SOV_WebUI",
-          result: true,
+          sort: [1705050983431],
         },
-        sort: [1704974352369],
-      },
-      {
-        _index: "sov_uu-audit-test-2024.01.11",
-        _id: "a8Bk-IwBKj9v7JGHEuwU",
-        _score: null,
-        _source: {
-          timestamp: "2024-01-11T11:59:12.307Z",
-          user: "admin",
-          type: "AGENTS_INFO_TYPE",
-          ip: "127.0.0.1",
-          comment: {
-            type: "status",
+        {
+          _index: "sov_uu-audit-test-2024.01.12",
+          _id: "EcD1_IwBKj9v7JGHLvZb",
+          _score: null,
+          _source: {
+            timestamp: "2024-01-12T09:16:11.027Z",
+            user: "admin",
+            type: "RULES_FILE_READ",
+            ip: "127.0.0.1",
+            comment: {
+              filename: "0010-rules_config.xml",
+            },
+            component: "SOV_WebUI",
+            result: true,
           },
-          component: "SOV_WebUI",
-          result: true,
+          sort: [1705050971027],
         },
-        sort: [1704974352307],
-      },
-      {
-        _index: "sov_uu-audit-test-2024.01.11",
-        _id: "acBk-IwBKj9v7JGHEezA",
-        _score: null,
-        _source: {
-          timestamp: "2024-01-11T11:59:12.222Z",
-          user: "admin",
-          type: "AGENTS_CONFIG_READ",
-          ip: "127.0.0.1",
-          comment: {
-            agent_id: "000",
-            component: "request",
-            configuration: "remote",
+        {
+          _index: "sov_uu-audit-test-2024.01.12",
+          _id: "D8D1_IwBKj9v7JGHKvYZ",
+          _score: null,
+          _source: {
+            timestamp: "2024-01-12T09:16:09.937Z",
+            user: "admin",
+            type: "RULES_LIST_FILES_LOCAL",
+            ip: "127.0.0.1",
+            comment: {},
+            component: "SOV_WebUI",
+            result: true,
           },
-          component: "SOV_WebUI",
-          result: true,
+          sort: [1705050969937],
         },
-        sort: [1704974352222],
-      },
-      {
-        _index: "sov_uu-audit-test-2024.01.11",
-        _id: "Z8Bk-IwBKj9v7JGHEexV",
-        _score: null,
-        _source: {
-          timestamp: "2024-01-11T11:59:12.116Z",
-          user: "admin",
-          type: "AGENTS_LIST",
-          ip: "127.0.0.1",
-          comment: {},
-          component: "SOV_WebUI",
-          result: true,
-        },
-        sort: [1704974352116],
-      },
-      {
-        _index: "sov_uu-audit-test-2024.01.11",
-        _id: "ZcBk-IwBKj9v7JGHEewc",
-        _score: null,
-        _source: {
-          timestamp: "2024-01-11T11:59:12.059Z",
-          user: "admin",
-          type: "AGENTS_LIST",
-          ip: "127.0.0.1",
-          comment: {},
-          component: "SOV_WebUI",
-          result: true,
-        },
-        sort: [1704974352059],
-      },
-      {
-        _index: "sov_uu-audit-test-2024.01.11",
-        _id: "Y8Bk-IwBKj9v7JGHEOzt",
-        _score: null,
-        _source: {
-          timestamp: "2024-01-11T11:59:12.012Z",
-          user: "admin",
-          type: "AGENTS_CONFIG_READ",
-          ip: "127.0.0.1",
-          comment: {
-            agent_id: "000",
-            component: "auth",
-            configuration: "auth",
+        {
+          _index: "sov_uu-audit-test-2024.01.12",
+          _id: "DMD1_IwBKj9v7JGHH_Ys",
+          _score: null,
+          _source: {
+            timestamp: "2024-01-12T09:16:07.140Z",
+            user: "admin",
+            type: "AGENTS_ADD",
+            ip: "127.0.0.1",
+            comment: {
+              agent_name: "agents",
+            },
+            component: "SOV_WebUI",
+            result: false,
           },
-          component: "SOV_WebUI",
-          result: true,
+          sort: [1705050967140],
         },
-        sort: [1704974352012],
-      },
-      {
-        _index: "sov_uu-audit-test-2024.01.11",
-        _id: "YcBk-IwBKj9v7JGHEOzq",
-        _score: null,
-        _source: {
-          timestamp: "2024-01-11T11:59:12.007Z",
-          user: "admin",
-          type: "AGENTS_LIST",
-          ip: "127.0.0.1",
-          comment: {},
-          component: "SOV_WebUI",
-          result: true,
-        },
-        sort: [1704974352007],
-      },
-      {
-        _index: "sov_uu-audit-test-2024.01.11",
-        _id: "X8Bk-IwBKj9v7JGHEOzD",
-        _score: null,
-        _source: {
-          timestamp: "2024-01-11T11:59:11.965Z",
-          user: "admin",
-          type: "AGENTS_INFO_TYPE",
-          ip: "127.0.0.1",
-          comment: {
-            type: "status",
+        {
+          _index: "sov_uu-audit-test-2024.01.12",
+          _id: "CcD1_IwBKj9v7JGHFfaA",
+          _score: null,
+          _source: {
+            timestamp: "2024-01-12T09:16:04.664Z",
+            user: "admin",
+            type: "AGENTS_CONFIG_READ",
+            ip: "127.0.0.1",
+            comment: {
+              agent_id: "123",
+              component: "ciakdacomponent",
+              configuration: "cikadaconfig",
+            },
+            component: "SOV_WebUI",
+            result: false,
           },
-          component: "SOV_WebUI",
-          result: true,
+          sort: [1705050964664],
         },
-        sort: [1704974351965],
-      },
-      {
-        _index: "sov_uu-audit-test-2024.01.11",
-        _id: "XcBk-IwBKj9v7JGHD-zr",
-        _score: null,
-        _source: {
-          timestamp: "2024-01-11T11:59:11.754Z",
-          user: "admin",
-          type: "AGENTS_INFO_TYPE",
-          ip: "127.0.0.1",
-          comment: {
-            type: "status",
+        {
+          _index: "sov_uu-audit-test-2024.01.12",
+          _id: "B8D1_IwBKj9v7JGHDfaW",
+          _score: null,
+          _source: {
+            timestamp: "2024-01-12T09:16:02.638Z",
+            user: "admin",
+            type: "AGENTS_INFO_READ",
+            ip: "127.0.0.1",
+            comment: {
+              agent_id: "agents",
+            },
+            component: "SOV_WebUI",
+            result: true,
           },
-          component: "SOV_WebUI",
-          result: true,
+          sort: [1705050962638],
         },
-        sort: [1704974351754],
-      },
-      {
-        _index: "sov_uu-audit-test-2024.01.11",
-        _id: "XMBk-IwBKj9v7JGHD-zp",
-        _score: null,
-        _source: {
-          timestamp: "2024-01-11T11:59:11.751Z",
-          user: "admin",
-          type: "SECURITY_CURRENT_POLICIES",
-          ip: "127.0.0.1",
-          comment: {},
-          component: "SOV_WebUI",
-          result: true,
+        {
+          _index: "sov_uu-audit-test-2024.01.12",
+          _id: "BMD1_IwBKj9v7JGHB_by",
+          _score: null,
+          _source: {
+            timestamp: "2024-01-12T09:16:01.195Z",
+            user: "admin",
+            type: "AGENTS_INFO_TYPE",
+            ip: "127.0.0.1",
+            comment: {
+              type: "cikadaType",
+            },
+            component: "SOV_WebUI",
+            result: false,
+          },
+          sort: [1705050961195],
         },
-        sort: [1704974351751],
-      },
-    ],
+        {
+          _index: "sov_uu-audit-test-2024.01.12",
+          _id: "AsD1_IwBKj9v7JGHAvau",
+          _score: null,
+          _source: {
+            timestamp: "2024-01-12T09:15:59.847Z",
+            user: "admin",
+            type: "AGENTS_LIST",
+            ip: "127.0.0.1",
+            comment: {},
+            component: "SOV_WebUI",
+            result: true,
+          },
+          sort: [1705050959847],
+        },
+        {
+          _index: "sov_uu-audit-test-2024.01.12",
+          _id: "_8D0_IwBKj9v7JGH-fWi",
+          _score: null,
+          _source: {
+            timestamp: "2024-01-12T09:15:57.531Z",
+            user: "admin",
+            type: "AGENTS_DELETE",
+            ip: "127.0.0.1",
+            comment: {
+              agent_id: "agents",
+            },
+            component: "SOV_WebUI",
+            result: false,
+          },
+          sort: [1705050957531],
+        },
+        {
+          _index: "sov_uu-audit-test-2024.01.12",
+          _id: "_cD0_IwBKj9v7JGH8vWk",
+          _score: null,
+          _source: {
+            timestamp: "2024-01-12T09:15:55.739Z",
+            user: "admin",
+            type: "SECURITY_CURRENT_POLICIES",
+            ip: "127.0.0.1",
+            comment: {},
+            component: "SOV_WebUI",
+            result: true,
+          },
+          sort: [1705050955739],
+        },
+      ],
+    },
   },
+  status: 200,
+  statusText: "OK",
+  headers: {
+    "cache-control": "private, no-cache, no-store, must-revalidate",
+    connection: "keep-alive",
+    "content-encoding": "gzip",
+    "content-type": "application/json; charset=utf-8",
+    date: "Fri, 12 Jan 2024 09:16:31 GMT",
+    "keep-alive": "timeout=120",
+    "osd-name": "ubuntu-frontman2",
+    "transfer-encoding": "chunked",
+    vary: "accept-encoding",
+    "x-frame-options": "sameorigin",
+  },
+  config: {
+    transitional: {
+      silentJSONParsing: true,
+      forcedJSONParsing: true,
+      clarifyTimeoutError: false,
+    },
+    transformRequest: [null],
+    transformResponse: [null],
+    timeout: 20000,
+    xsrfCookieName: "XSRF-TOKEN",
+    xsrfHeaderName: "X-XSRF-TOKEN",
+    maxContentLength: -1,
+    maxBodyLength: -1,
+    env: {
+      FormData: null,
+    },
+    headers: {
+      Accept: "application/json, text/plain, */*",
+      "Content-Type": "application/json",
+      "osd-xsrf": "kibana",
+      pattern: "sov_uu-alerts-*",
+      id: "default",
+    },
+    method: "post",
+    data: '{"index":"sov_uu-audit-test-2024.01.12","body":{"query":{"bool":{"must":[{"range":{"timestamp":{"gte":"now-24h","lte":"now","format":"epoch_millis"}}}],"filter":[{"match_all":{}}],"should":[],"must_not":[]}},"size":10,"from":0,"sort":{"timestamp":{"order":"desc"}}}}',
+    url: "/wko/elastic/audit",
+  },
+  request: {},
 };
 
 // Извлечение данных из hits.hits
-const auditData = serverData.hits.hits.map((hit) => hit._source);
+const auditData = serverData.data.hits.hits.map((hit) => ({
+  ...hit._source,
+  _id: hit._id,
+}));
 
 // Определение колонок для таблицы
 const auditColumns: Array<EuiBasicTableColumn<(typeof auditData)[0]>> = [
@@ -255,8 +300,6 @@ const auditColumns: Array<EuiBasicTableColumn<(typeof auditData)[0]>> = [
 ];
 
 const TestHypothesis = () => {
-  const [enableAll, setEnableAll] = useState(false);
-  const [readonly, setReadonly] = useState(false);
   const [pageIndex, setPageIndex] = useState(0);
   const [pageSize, setPageSize] = useState(5);
   const [sortField, setSortField] =
@@ -330,8 +373,6 @@ const TestHypothesis = () => {
       field: sortField,
       direction: sortDirection,
     },
-    enableAllColumns: enableAll,
-    readOnly: readonly,
   };
 
   return (
@@ -339,26 +380,12 @@ const TestHypothesis = () => {
       <EuiFlexGroup style={{ padding: "16px" }}>
         <EuiFlexItem>
           <EuiProvider colorMode="light">
-            <EuiFlexGroup>
-              <EuiFlexItem grow={false}>
-                <EuiSwitch
-                  label={<EuiCode>enableAllColumns</EuiCode>}
-                  checked={enableAll}
-                  onChange={() => setEnableAll((enabled) => !enabled)}
-                />
-              </EuiFlexItem>
-              <EuiFlexItem grow={false}>
-                <EuiSwitch
-                  label={<EuiCode>readOnly</EuiCode>}
-                  checked={readonly}
-                  onChange={() => setReadonly((readonly) => !readonly)}
-                />
-              </EuiFlexItem>
-            </EuiFlexGroup>
-            <EuiSpacer />
             <EuiBasicTable
               tableCaption="Audit Log"
-              items={pageOfItems}
+              items={pageOfItems.map((audit) => ({
+                ...audit,
+                key: audit._id, // Добавляем ключ _id в каждый объект
+              }))}
               columns={auditColumns}
               pagination={pagination}
               sorting={sorting}
