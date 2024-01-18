@@ -1,10 +1,7 @@
-import "./App.css";
-import React from "react";
+import './App.css';
 
-import ElasticPage from "@/App/pages/Elastic";
+import ElasticPage from '@/App/pages/Elastic';
 
-const App = () => {
-  return <ElasticPage />;
-};
+const App = () => <ElasticPage />;
 
 export default App;

@@ -13,9 +13,9 @@ const PageLifeCycleExample = () => {
 
   log('PageLifeCycleExample is rendered');
 
-  React.useEffect(() => { 
-    log('PageLifeCycleExample useEffect')
-   }, []);
+  React.useEffect(() => {
+    log('PageLifeCycleExample useEffect');
+  }, []);
 
   return (
     <div>
@@ -24,7 +24,7 @@ const PageLifeCycleExample = () => {
       {isVisible && <Counter />}
       {isVisible && <ResizeDemo />}
     </div>
-  )
+  );
 };
 
 export default PageLifeCycleExample;

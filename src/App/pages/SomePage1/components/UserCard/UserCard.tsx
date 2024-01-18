@@ -1,5 +1,3 @@
-const UserCard = () => {
-  return <div>UserCard</div>;
-};
+const UserCard = () => <div>UserCard</div>;
 
 export default UserCard;

@@ -6,7 +6,6 @@ import ReactToPrint from 'react-to-print';
 
 import { log } from '@/utils/log';
 
-
 class PrintTablePage extends Component {
   constructor(props) {
     super(props);
@@ -135,19 +134,20 @@ class PrintTablePage extends Component {
     return (
       <div className="container">
         <ReactToPrint
-          trigger={
-            () => {
-            return (
-            <Button type="primary" icon={<PrinterOutlined />} onClick={() => {}}>
-            Сформировать отчет
-          </Button>)
-          }}
+          trigger={() => (
+            <Button
+              type="primary"
+              icon={<PrinterOutlined />}
+              onClick={() => {}}>
+              Сформировать отчет
+            </Button>
+          )}
           content={() => this.componentRef}
           documentTitle="New documnet"
           pageStyle="print"
         />
         <Table
-          ref={el => (this.componentRef=el)}
+          ref={(el) => (this.componentRef = el)}
           dataSource={this.dataSource}
           columns={this.columns}
           rowSelection={rowSelection}

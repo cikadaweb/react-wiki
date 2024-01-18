@@ -19,7 +19,7 @@ const Counter = () => {
       <div>Нажали {value} раз(а)</div>
       <Button onClick={handleClick}>Нажать</Button>
     </div>
-  )
+  );
 };
 
 export default Counter;

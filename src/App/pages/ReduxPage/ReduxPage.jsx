@@ -7,20 +7,19 @@ import Footer from '@/App/pages/ReduxPage/components/Footer';
 import todoApp from '@/App/pages/ReduxPage/redux/reducers';
 
 const ReduxPage = () => {
+  const store = createStore(todoApp);
 
-    const store = createStore(todoApp);
-
-    return (
-        <Provider store={store}>
-            <div className="container">
-                <div>
-                    <AddTodo/>
-                    <VisibleTodoList/>
-                    <Footer/>
-                </div>
-            </div>
-        </Provider>
-    );
+  return (
+    <Provider store={store}>
+      <div className="container">
+        <div>
+          <AddTodo />
+          <VisibleTodoList />
+          <Footer />
+        </div>
+      </div>
+    </Provider>
+  );
 };
 
 export default ReduxPage;

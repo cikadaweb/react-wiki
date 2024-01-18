@@ -4,7 +4,7 @@ import { log } from '@/utils/log';
 
 const ResizeDemo = () => {
   const [width, setWidth] = React.useState<null | number>(null);
- 
+
   React.useEffect(() => {
     const handleResize = () => setWidth(window.innerWidth);
 
@@ -15,10 +15,10 @@ const ResizeDemo = () => {
     return () => {
       log('ResizeDemo has unmounted');
       window.removeEventListener('resize', handleResize);
-    }
-  }, [])
+    };
+  }, []);
 
-  return <div>Ширина: { width } px</div>
+  return <div>Ширина: {width} px</div>;
 };
 
 export default ResizeDemo;

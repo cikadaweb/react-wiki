@@ -1,1 +1,1 @@
-export { default } from './ElasticPage';
+export { default } from './ElasticOutside';

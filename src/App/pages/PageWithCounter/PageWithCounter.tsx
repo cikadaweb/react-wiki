@@ -12,7 +12,7 @@ const PageWithCounter = () => {
       <div>Нажали {counter} раз(а)</div>
       <Button onClick={handleClick}>Нажать</Button>
     </div>
-  )
+  );
 };
 
 export default PageWithCounter;

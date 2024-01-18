@@ -1,10 +1,10 @@
 import React from 'react';
 
 import { useStopWatch } from './userStopWatch';
-import Button from '@/App/components/Button'
+import Button from '@/App/components/Button';
 
 const StopWatch = () => {
-  const {handleReset,handleStart, value } = useStopWatch();
+  const { handleReset, handleStart, value } = useStopWatch();
 
   return (
     <div>

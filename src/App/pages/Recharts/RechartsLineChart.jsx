@@ -1,28 +1,34 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState } from 'react';
 
 import { Row, Col, Card } from 'antd';
 import { format } from 'date-fns';
-import { ResponsiveContainer, LineChart, CartesianGrid, XAxis, YAxis, Label, Tooltip, Line } from 'recharts';
+import {
+  ResponsiveContainer,
+  LineChart,
+  CartesianGrid,
+  XAxis,
+  YAxis,
+  Label,
+  Tooltip,
+  Line,
+} from 'recharts';
 
 import style from '@/App/pages/Recharts/Recharts.module.css';
-import {log} from '@/utils/log';
-
+import { log } from '@/utils/log';
 
 
 const TestHypothesis = () => {
+  const [chartData, setChartData] = useState({ data: [] });
 
-    const [chartData, setChartData] = useState({ data: [] });
+  useEffect(() => {
+    generateChartData();
+  }, []);
 
-    useEffect(() => {
-        generateChartData();
-    }, []);
-    
-    useEffect(() => {
-        log('chartData: ', chartData.data);
-    }, [chartData]);
+  useEffect(() => {
+    log('chartData: ', chartData.data);
+  }, [chartData]);
 
-    const generateChartData = () => {
-
+  const generateChartData = () => {
     //     const response = {
     //       '*': {
     //         entries: [
@@ -433,445 +439,444 @@ const TestHypothesis = () => {
     //         ]
     //     }
     //   };
-    
+
     const response = {
-        "*": {
-            "entries": [
-                {
-                    "time": 1699259638104,
-                    "mean": null
-                },
-                {
-                    "time": 1699285558838,
-                    "mean": null
-                },
-                {
-                    "time": 1699311479572,
-                    "mean": null
-                },
-                {
-                    "time": 1699337400306,
-                    "mean": null
-                },
-                {
-                    "time": 1699363321040,
-                    "mean": null
-                },
-                {
-                    "time": 1699389241774,
-                    "mean": null
-                },
-                {
-                    "time": 1699415162508,
-                    "mean": null
-                },
-                {
-                    "time": 1699441083242,
-                    "mean": null
-                },
-                {
-                    "time": 1699467003976,
-                    "mean": null
-                },
-                {
-                    "time": 1699492924710,
-                    "mean": null
-                },
-                {
-                    "time": 1699518845444,
-                    "mean": null
-                },
-                {
-                    "time": 1699544766178,
-                    "mean": null
-                },
-                {
-                    "time": 1699570686912,
-                    "mean": null
-                },
-                {
-                    "time": 1699596607646,
-                    "mean": null
-                },
-                {
-                    "time": 1699622528380,
-                    "mean": null
-                },
-                {
-                    "time": 1699648449114,
-                    "mean": null
-                },
-                {
-                    "time": 1699674369848,
-                    "mean": null
-                },
-                {
-                    "time": 1699700290582,
-                    "mean": null
-                },
-                {
-                    "time": 1699726211316,
-                    "mean": null
-                },
-                {
-                    "time": 1699752132050,
-                    "mean": null
-                },
-                {
-                    "time": 1699778052784,
-                    "mean": null
-                },
-                {
-                    "time": 1699803973518,
-                    "mean": null
-                },
-                {
-                    "time": 1699829894252,
-                    "mean": null
-                },
-                {
-                    "time": 1699855814986,
-                    "mean": null
-                },
-                {
-                    "time": 1699881735720,
-                    "mean": null
-                },
-                {
-                    "time": 1699907656454,
-                    "mean": null
-                },
-                {
-                    "time": 1699933577188,
-                    "mean": null
-                },
-                {
-                    "time": 1699959497922,
-                    "mean": null
-                },
-                {
-                    "time": 1699985418656,
-                    "mean": null
-                },
-                {
-                    "time": 1700011339390,
-                    "mean": null
-                },
-                {
-                    "time": 1700037260124,
-                    "mean": null
-                },
-                {
-                    "time": 1700063180858,
-                    "mean": null
-                },
-                {
-                    "time": 1700089101592,
-                    "mean": null
-                },
-                {
-                    "time": 1700115022326,
-                    "mean": null
-                },
-                {
-                    "time": 1700140943060,
-                    "mean": null
-                },
-                {
-                    "time": 1700166863794,
-                    "mean": null
-                },
-                {
-                    "time": 1700192784528,
-                    "mean": null
-                },
-                {
-                    "time": 1700218705262,
-                    "mean": null
-                },
-                {
-                    "time": 1700244625996,
-                    "mean": null
-                },
-                {
-                    "time": 1700270546730,
-                    "mean": null
-                },
-                {
-                    "time": 1700296467464,
-                    "mean": null
-                },
-                {
-                    "time": 1700322388198,
-                    "mean": null
-                },
-                {
-                    "time": 1700348308932,
-                    "mean": null
-                },
-                {
-                    "time": 1700374229666,
-                    "mean": null
-                },
-                {
-                    "time": 1700400150400,
-                    "mean": null
-                },
-                {
-                    "time": 1700426071134,
-                    "mean": null
-                },
-                {
-                    "time": 1700451991868,
-                    "mean": null
-                },
-                {
-                    "time": 1700477912602,
-                    "mean": null
-                },
-                {
-                    "time": 1700503833336,
-                    "mean": null
-                },
-                {
-                    "time": 1700529754070,
-                    "mean": null
-                },
-                {
-                    "time": 1700555674804,
-                    "mean": null
-                },
-                {
-                    "time": 1700581595538,
-                    "mean": null
-                },
-                {
-                    "time": 1700607516272,
-                    "mean": null
-                },
-                {
-                    "time": 1700633437006,
-                    "mean": null
-                },
-                {
-                    "time": 1700659357740,
-                    "mean": null
-                },
-                {
-                    "time": 1700685278474,
-                    "mean": null
-                },
-                {
-                    "time": 1700711199208,
-                    "mean": null
-                },
-                {
-                    "time": 1700737119942,
-                    "mean": null
-                },
-                {
-                    "time": 1700763040676,
-                    "mean": null
-                },
-                {
-                    "time": 1700788961410,
-                    "mean": null
-                },
-                {
-                    "time": 1700814882144,
-                    "mean": null
-                },
-                {
-                    "time": 1700840802878,
-                    "mean": null
-                },
-                {
-                    "time": 1700866723612,
-                    "mean": null
-                },
-                {
-                    "time": 1700892644346,
-                    "mean": null
-                },
-                {
-                    "time": 1700918565080,
-                    "mean": null
-                },
-                {
-                    "time": 1700944485814,
-                    "mean": null
-                },
-                {
-                    "time": 1700970406548,
-                    "mean": null
-                },
-                {
-                    "time": 1700996327282,
-                    "mean": null
-                },
-                {
-                    "time": 1701022248016,
-                    "mean": null
-                },
-                {
-                    "time": 1701048168750,
-                    "mean": null
-                },
-                {
-                    "time": 1701074089484,
-                    "mean": null
-                },
-                {
-                    "time": 1701100010218,
-                    "mean": null
-                },
-                {
-                    "time": 1701125930952,
-                    "mean": null
-                },
-                {
-                    "time": 1701151851686,
-                    "mean": null
-                },
-                {
-                    "time": 1701177772420,
-                    "mean": null
-                },
-                {
-                    "time": 1701203693154,
-                    "mean": null
-                },
-                {
-                    "time": 1701229613888,
-                    "mean": 171791.9713292789
-                },
-                {
-                    "time": 1701255534622,
-                    "mean": 653680.9175925925
-                },
-                {
-                    "time": 1701281455356,
-                    "mean": 1163342.9351651745
-                },
-                {
-                    "time": 1701307376090,
-                    "mean": 1658674.6706790123
-                },
-                {
-                    "time": 1701333296824,
-                    "mean": 2159183.2580645164
-                },
-                {
-                    "time": 1701359217558,
-                    "mean": null
-                },
-                {
-                    "time": 1701385138292,
-                    "mean": null
-                },
-                {
-                    "time": 1701411059026,
-                    "mean": 1350563.3485873458
-                },
-                {
-                    "time": 1701436979760,
-                    "mean": 2848748.3543209876
-                },
-                {
-                    "time": 1701462900494,
-                    "mean": 3599789.142901235
-                },
-                {
-                    "time": 1701488821228,
-                    "mean": 4315039.656992899
-                },
-                {
-                    "time": 1701514741962,
-                    "mean": 5032063.78425926
-                },
-                {
-                    "time": 1701540662696,
-                    "mean": 5750292.351234568
-                },
-                {
-                    "time": 1701566583430,
-                    "mean": 6455837.926520531
-                },
-                {
-                    "time": 1701592504164,
-                    "mean": 7120894.195679013
-                },
-                {
-                    "time": 1701618424898,
-                    "mean": 7790646.062962963
-                },
-                {
-                    "time": 1701644345632,
-                    "mean": 8462764.23464032
-                },
-                {
-                    "time": 1701670266366,
-                    "mean": 1271430.5177590626
-                },
-                {
-                    "time": 1701696187100,
-                    "mean": null
-                },
-                {
-                    "time": 1701722107834,
-                    "mean": null
-                },
-                {
-                    "time": 1701748028568,
-                    "mean": null
-                },
-                {
-                    "time": 1701773949302,
-                    "mean": null
-                },
-                {
-                    "time": 1701799870036,
-                    "mean": null
-                },
-                {
-                    "time": 1701825790770,
-                    "mean": null
-                },
-                {
-                    "time": 1701851711504,
-                    "mean": null
-                }
-            ]
-        },
-        "from_date": 1699277186378,
-        "interval": 25920735
-    }
-
-        const { entries } = response['*'];
-
-        log('entries: ', entries);
-
-        log('response.interval: ', response.interval);
-
-        const gdata = [];
-        const newInterval = response.interval;
-      
-        if (entries && entries.length > 1) {
-          for (let i = 1; i < entries.length; i++) {
-            gdata.push({
-              time: entries[i]['time'],
-              mean: Math.max((entries[i]['mean'] - entries[i - 1]['mean']) / newInterval, 0)
-            });
+      "*": {
+        "entries": [
+          {
+            "time": 1699259638104,
+            "mean": null
+          },
+          {
+            "time": 1699285558838,
+            "mean": null
+          },
+          {
+            "time": 1699311479572,
+            "mean": null
+          },
+          {
+            "time": 1699337400306,
+            "mean": null
+          },
+          {
+            "time": 1699363321040,
+            "mean": null
+          },
+          {
+            "time": 1699389241774,
+            "mean": null
+          },
+          {
+            "time": 1699415162508,
+            "mean": null
+          },
+          {
+            "time": 1699441083242,
+            "mean": null
+          },
+          {
+            "time": 1699467003976,
+            "mean": null
+          },
+          {
+            "time": 1699492924710,
+            "mean": null
+          },
+          {
+            "time": 1699518845444,
+            "mean": null
+          },
+          {
+            "time": 1699544766178,
+            "mean": null
+          },
+          {
+            "time": 1699570686912,
+            "mean": null
+          },
+          {
+            "time": 1699596607646,
+            "mean": null
+          },
+          {
+            "time": 1699622528380,
+            "mean": null
+          },
+          {
+            "time": 1699648449114,
+            "mean": null
+          },
+          {
+            "time": 1699674369848,
+            "mean": null
+          },
+          {
+            "time": 1699700290582,
+            "mean": null
+          },
+          {
+            "time": 1699726211316,
+            "mean": null
+          },
+          {
+            "time": 1699752132050,
+            "mean": null
+          },
+          {
+            "time": 1699778052784,
+            "mean": null
+          },
+          {
+            "time": 1699803973518,
+            "mean": null
+          },
+          {
+            "time": 1699829894252,
+            "mean": null
+          },
+          {
+            "time": 1699855814986,
+            "mean": null
+          },
+          {
+            "time": 1699881735720,
+            "mean": null
+          },
+          {
+            "time": 1699907656454,
+            "mean": null
+          },
+          {
+            "time": 1699933577188,
+            "mean": null
+          },
+          {
+            "time": 1699959497922,
+            "mean": null
+          },
+          {
+            "time": 1699985418656,
+            "mean": null
+          },
+          {
+            "time": 1700011339390,
+            "mean": null
+          },
+          {
+            "time": 1700037260124,
+            "mean": null
+          },
+          {
+            "time": 1700063180858,
+            "mean": null
+          },
+          {
+            "time": 1700089101592,
+            "mean": null
+          },
+          {
+            "time": 1700115022326,
+            "mean": null
+          },
+          {
+            "time": 1700140943060,
+            "mean": null
+          },
+          {
+            "time": 1700166863794,
+            "mean": null
+          },
+          {
+            "time": 1700192784528,
+            "mean": null
+          },
+          {
+            "time": 1700218705262,
+            "mean": null
+          },
+          {
+            "time": 1700244625996,
+            "mean": null
+          },
+          {
+            "time": 1700270546730,
+            "mean": null
+          },
+          {
+            "time": 1700296467464,
+            "mean": null
+          },
+          {
+            "time": 1700322388198,
+            "mean": null
+          },
+          {
+            "time": 1700348308932,
+            "mean": null
+          },
+          {
+            "time": 1700374229666,
+            "mean": null
+          },
+          {
+            "time": 1700400150400,
+            "mean": null
+          },
+          {
+            "time": 1700426071134,
+            "mean": null
+          },
+          {
+            "time": 1700451991868,
+            "mean": null
+          },
+          {
+            "time": 1700477912602,
+            "mean": null
+          },
+          {
+            "time": 1700503833336,
+            "mean": null
+          },
+          {
+            "time": 1700529754070,
+            "mean": null
+          },
+          {
+            "time": 1700555674804,
+            "mean": null
+          },
+          {
+            "time": 1700581595538,
+            "mean": null
+          },
+          {
+            "time": 1700607516272,
+            "mean": null
+          },
+          {
+            "time": 1700633437006,
+            "mean": null
+          },
+          {
+            "time": 1700659357740,
+            "mean": null
+          },
+          {
+            "time": 1700685278474,
+            "mean": null
+          },
+          {
+            "time": 1700711199208,
+            "mean": null
+          },
+          {
+            "time": 1700737119942,
+            "mean": null
+          },
+          {
+            "time": 1700763040676,
+            "mean": null
+          },
+          {
+            "time": 1700788961410,
+            "mean": null
+          },
+          {
+            "time": 1700814882144,
+            "mean": null
+          },
+          {
+            "time": 1700840802878,
+            "mean": null
+          },
+          {
+            "time": 1700866723612,
+            "mean": null
+          },
+          {
+            "time": 1700892644346,
+            "mean": null
+          },
+          {
+            "time": 1700918565080,
+            "mean": null
+          },
+          {
+            "time": 1700944485814,
+            "mean": null
+          },
+          {
+            "time": 1700970406548,
+            "mean": null
+          },
+          {
+            "time": 1700996327282,
+            "mean": null
+          },
+          {
+            "time": 1701022248016,
+            "mean": null
+          },
+          {
+            "time": 1701048168750,
+            "mean": null
+          },
+          {
+            "time": 1701074089484,
+            "mean": null
+          },
+          {
+            "time": 1701100010218,
+            "mean": null
+          },
+          {
+            "time": 1701125930952,
+            "mean": null
+          },
+          {
+            "time": 1701151851686,
+            "mean": null
+          },
+          {
+            "time": 1701177772420,
+            "mean": null
+          },
+          {
+            "time": 1701203693154,
+            "mean": null
+          },
+          {
+            "time": 1701229613888,
+            "mean": 171791.9713292789
+          },
+          {
+            "time": 1701255534622,
+            "mean": 653680.9175925925
+          },
+          {
+            "time": 1701281455356,
+            "mean": 1163342.9351651745
+          },
+          {
+            "time": 1701307376090,
+            "mean": 1658674.6706790123
+          },
+          {
+            "time": 1701333296824,
+            "mean": 2159183.2580645164
+          },
+          {
+            "time": 1701359217558,
+            "mean": null
+          },
+          {
+            "time": 1701385138292,
+            "mean": null
+          },
+          {
+            "time": 1701411059026,
+            "mean": 1350563.3485873458
+          },
+          {
+            "time": 1701436979760,
+            "mean": 2848748.3543209876
+          },
+          {
+            "time": 1701462900494,
+            "mean": 3599789.142901235
+          },
+          {
+            "time": 1701488821228,
+            "mean": 4315039.656992899
+          },
+          {
+            "time": 1701514741962,
+            "mean": 5032063.78425926
+          },
+          {
+            "time": 1701540662696,
+            "mean": 5750292.351234568
+          },
+          {
+            "time": 1701566583430,
+            "mean": 6455837.926520531
+          },
+          {
+            "time": 1701592504164,
+            "mean": 7120894.195679013
+          },
+          {
+            "time": 1701618424898,
+            "mean": 7790646.062962963
+          },
+          {
+            "time": 1701644345632,
+            "mean": 8462764.23464032
+          },
+          {
+            "time": 1701670266366,
+            "mean": 1271430.5177590626
+          },
+          {
+            "time": 1701696187100,
+            "mean": null
+          },
+          {
+            "time": 1701722107834,
+            "mean": null
+          },
+          {
+            "time": 1701748028568,
+            "mean": null
+          },
+          {
+            "time": 1701773949302,
+            "mean": null
+          },
+          {
+            "time": 1701799870036,
+            "mean": null
+          },
+          {
+            "time": 1701825790770,
+            "mean": null
+          },
+          {
+            "time": 1701851711504,
+            "mean": null
           }
-        }
-      
-        setChartData({ data: gdata });
-        
+        ]
+      },
+      "from_date": 1699277186378,
+      "interval": 25920735
     };
 
-    return (
-        <div className="container">
-                    {/* <Row gutter={[8, 8]}>
+    const { entries } = response['*'];
+
+    log('entries: ', entries);
+
+    log('response.interval: ', response.interval);
+
+    const gdata = [];
+    const newInterval = response.interval;
+
+    if (entries && entries.length > 1) {
+      for (let i = 1; i < entries.length; i++) {
+        gdata.push({
+          time: entries[i]['time'],
+          mean: Math.max((entries[i]['mean'] - entries[i - 1]['mean']) / newInterval, 0)
+        });
+      }
+    });
+
+    setChartData({ data: gdata });
+    };
+
+  return (
+    <div className="container">
+      {/* <Row gutter={[8, 8]}>
         <Col span={12}>
           <Row gutter={[16, 16]}>
             <Col span={12}>
@@ -982,26 +987,26 @@ const TestHypothesis = () => {
           </Row>
         </Col>
       </Row> */}
-        <ResponsiveContainer width={500} height={300}>
-                  <LineChart data={chartData.data} margin={{ top: 30, right: 30, left: 30, bottom: 30 }}>
-                    <CartesianGrid />
-                    <XAxis
-                      type="number"
-                      dataKey="time"
-                      domain={['dataMin', 'dataMax']}
-                      tickFormatter={unixTime => format(new Date(unixTime), 'HH:mm:ss')}
-                    >
-                      <Label value={'Time'} position="bottom" style={{ textAnchor: 'middle' }} />
-                    </XAxis>
-                    <YAxis>
-                      <Label value={'Packets'} position="left" angle={-90} style={{ textAnchor: 'middle' }} />
-                    </YAxis>
-                    <Tooltip />
-                    <Line dataKey="mean" name="Packets" type={'natural'} dot={false} />
-                  </LineChart>
-                </ResponsiveContainer>
-        </div>
-    );
+      <ResponsiveContainer width={500} height={300}>
+        <LineChart data={chartData.data} margin={{ top: 30, right: 30, left: 30, bottom: 30 }}>
+          <CartesianGrid />
+          <XAxis
+            type="number"
+            dataKey="time"
+            domain={['dataMin', 'dataMax']}
+            tickFormatter={unixTime => format(new Date(unixTime), 'HH:mm:ss')}
+          >
+            <Label value={'Time'} position="bottom" style={{ textAnchor: 'middle' }} />
+          </XAxis>
+          <YAxis>
+            <Label value={'Packets'} position="left" angle={-90} style={{ textAnchor: 'middle' }} />
+          </YAxis>
+          <Tooltip />
+          <Line dataKey="mean" name="Packets" type={'natural'} dot={false} />
+        </LineChart>
+      </ResponsiveContainer>
+    </div>
+  );
 };
 
 export default TestHypothesis;
