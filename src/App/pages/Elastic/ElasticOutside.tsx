@@ -1,4 +1,4 @@
-import React, { useState, Fragment } from 'react';
+import { useState } from 'react';
 import '@elastic/eui/dist/eui_theme_light.css';
 import {
   EuiProvider,
@@ -16,21 +16,14 @@ import {
   useGeneratedHtmlId,
 } from '@elastic/eui';
 
-export default () => {
+const ElasticOutside = () => {
   const [isFlyoutVisible, setIsFlyoutVisible] = useState(false);
-  const [selectedTabId, setSelectedTabId] = useState('1');
-  const [isPopoverOpen, setIsPopoverOpen] = useState(false);
-  const [superSelectvalue, setSuperSelectValue] = useState('option_one');
-  const [isExpressionOpen, setIsExpressionOpen] = useState(false);
   const complicatedFlyoutTitleId = useGeneratedHtmlId({
     prefix: 'complicatedFlyoutTitle',
   });
 
   const closeFlyout = () => setIsFlyoutVisible(false);
   const showFlyout = () => setIsFlyoutVisible(true);
-  const closePopover = () => setIsPopoverOpen(false);
-  const togglePopover = () =>
-    setIsPopoverOpen((isPopoverOpen) => !isPopoverOpen);
 
   const flyoutContent = (
     <EuiText>
@@ -96,3 +89,5 @@ export default () => {
     </EuiProvider>
   );
 };
+
+export default ElasticOutside;
