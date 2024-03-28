@@ -1,7 +1,7 @@
 import './App.css';
 
-import ElasticPage from '@/App/pages/Elastic';
+import MainTS from '@/App/pages/TypeScript/MainTS';
 
-const App = () => <ElasticPage />;
+const App = () => <MainTS />;
 
 export default App;
