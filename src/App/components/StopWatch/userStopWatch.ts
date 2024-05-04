@@ -1,10 +1,10 @@
 import React from 'react';
 
 export type UseStopWatchResult = {
-  value: number,
-  handleReset: () => void,
-  handleStart: () => void
-}
+  value: number;
+  handleReset: () => void;
+  handleStart: () => void;
+};
 
 export const useStopWatch = (): UseStopWatchResult => {
   const [value, setValue] = React.useState(0);
@@ -13,14 +13,15 @@ export const useStopWatch = (): UseStopWatchResult => {
   const reset = () => {
     if (timeout.current !== null) {
       clearTimeout(timeout.current);
-    };
+    }
   };
 
-  React.useEffect(() => {
-    return () => {
+  React.useEffect(
+    () => () => {
       reset();
-    };
-  }, []);
+    },
+    [],
+  );
 
   const handleReset = () => {
     reset();
@@ -37,5 +38,5 @@ export const useStopWatch = (): UseStopWatchResult => {
     }, 1000);
   };
 
-  return { handleReset, handleStart, value }
-}
+  return { handleReset, handleStart, value };
+};

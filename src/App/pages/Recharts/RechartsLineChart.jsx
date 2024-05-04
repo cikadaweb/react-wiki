@@ -1,6 +1,5 @@
 import { useEffect, useState } from 'react';
 
-import { Row, Col, Card } from 'antd';
 import { format } from 'date-fns';
 import {
   ResponsiveContainer,
@@ -12,8 +11,6 @@ import {
   Tooltip,
   Line,
 } from 'recharts';
-
-import style from '@/App/pages/Recharts/Recharts.module.css';
 import { log } from '@/utils/log';
 
 

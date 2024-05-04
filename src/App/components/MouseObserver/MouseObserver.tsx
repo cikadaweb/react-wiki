@@ -32,7 +32,7 @@ const MouseObserver = () => {
   log('MouseObserver is mounted');
 
   return (
-    <div ref={containerRef} className='mouse-observer'>
+    <div ref={containerRef} className="mouse-observer">
       <div ref={mouseRef} className="mouse-observer__mouse" />
     </div>
   );

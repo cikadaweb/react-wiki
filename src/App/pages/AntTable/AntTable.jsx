@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import { Component } from 'react';
 
 import { PrinterOutlined } from '@ant-design/icons';
 import { Table, Button } from 'antd';

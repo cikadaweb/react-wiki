@@ -1,5 +1,3 @@
-import React from 'react';
-
 import { useStopWatch } from './userStopWatch';
 import Button from '@/App/components/Button';
 

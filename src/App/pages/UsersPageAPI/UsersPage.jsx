@@ -2,12 +2,9 @@ import { useEffect, useState } from 'react';
 
 import axios from 'axios';
 
-// eslint-disable-next-line import/order
 import UserItem from './components/UserItem';
 
 import './App.css';
-
-import { log } from '@/utils/log';
 
 const UsersPage = () => {
   const [users, setUsers] = useState([]);

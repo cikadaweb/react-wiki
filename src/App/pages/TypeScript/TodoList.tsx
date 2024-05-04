@@ -1,20 +1,16 @@
-import { Todo } from "@/App/pages/TypeScript/types";
-import TodoItem from "@/App/pages/TypeScript/TodoItem";
+import { Todo } from '@/App/pages/TypeScript/types';
+import TodoItem from '@/App/pages/TypeScript/TodoItem';
 
 interface ITodoListProps {
-    list: Todo[]
+  list: Todo[];
 }
 
-const  TodoList = ({list}: ITodoListProps) => {
-    return (
-        <ul>
-            {
-                list.map((todo) => (
-                    <TodoItem key={todo.id} {...todo}/>
-                ))
-            }
-        </ul>
-    )
-}
+const TodoList = ({ list }: ITodoListProps) => (
+  <ul>
+    {list.map((todo) => (
+      <TodoItem key={todo.id} {...todo} />
+    ))}
+  </ul>
+);
 
 export default TodoList;
