@@ -37,6 +37,7 @@
     "recharts": "^2.10.3",
     "redux": "^5.0.1",
     "typescript": "^5.1.6",
+    "RulesetHandler": "^9.0.1",
     "web-vitals": "^2.1.0"
   },
   "scripts": {

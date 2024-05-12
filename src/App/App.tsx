@@ -1,7 +1,7 @@
-import './App.css';
+import "./App.css";
 
-import MainTS from '@/App/pages/TypeScript/MainTS';
+import MainConstructor from "@/App/pages/Constructor/MainConstructor";
 
-const App = () => <MainTS />;
+const App = () => <MainConstructor />;
 
 export default App;
