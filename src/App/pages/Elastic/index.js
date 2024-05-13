@@ -1,1 +1,1 @@
-export { default } from './ElasticOutside';
+export { default } from './ElasticOutside.tsx.temp';

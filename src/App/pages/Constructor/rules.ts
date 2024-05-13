@@ -1,4 +1,4 @@
-import axios from "axios";
+// import axios from "axios";
 // import { WzRequest } from "../../../../../../react-services";
 // import { PLUGIN_PLATFORM_REQUEST_HEADERS } from "../../../../../../../common/constants";
 
@@ -109,7 +109,7 @@ export class RulesetHandler {
         timeout: 20000,
       };
 
-      await axios(options);
+      // await axios(options);
       // const result = await WzRequest.genericReq("POST", "/api/command");
       // return result;
     } catch (error: any) {

@@ -2,7 +2,6 @@ import { useState, Fragment } from "react";
 import "@elastic/eui/dist/eui_theme_light.css";
 
 import {
-  EuiProvider,
   EuiPage,
   EuiFlexItem,
   EuiTitle,
@@ -26,8 +25,12 @@ import changeFieldHandler from "./utils/change-field-handler";
 import { IRuleChildren, ITab } from "./types";
 import ConstructorTabs from "./constants/const.toggle-buttons";
 import convertToIndentCode from "./utils/create-rule-tag";
+import loadXML from './utils/load-xml';
+
 import XMLConstructor from "./xml-constructor/xml-constructor";
-import { RulesetHandler } from './rules';
+import XMLTextView from "./xml-text-view/xml-text-view";
+
+import { RulesetHandler } from "./rules";
 
 export const checkFilenameXMLExtension = (filename: string): string => {
   let filenameParams = filename.split(".");
@@ -38,10 +41,28 @@ export const checkFilenameXMLExtension = (filename: string): string => {
 };
 
 const MainConstructor = () => {
+
+  const initialRules = [
+    {
+      id: '1',
+      nodeName: 'rule',
+      value: 'Initial Rule 1',
+      children: [],
+      attributes: new Map([['id', '1'], ['level', '1']]),
+    },
+    {
+      id: '2',
+      nodeName: 'rule',
+      value: 'Initial Rule 2',
+      children: [],
+      attributes: new Map([['id', '2'], ['level', '2']]),
+    },
+  ];
+
   const [isLoading, setIsLoading] = useState(false);
   const [selectedTab, setSelectedTab] = useState("constructor");
 
-  const [rules, setRules] = useState<IRuleChildren[]>([]);
+  const [rules, setRules] = useState<IRuleChildren[]>(initialRules);
 
   const [fileName, setFileName] = useState("");
   const [comments, setComments] = useState<string[]>([]);
@@ -56,8 +77,38 @@ const MainConstructor = () => {
   const [isRuleLevelFilled, setRuleLevelFilled] = useState(false);
   const [isDescFilled, setDescFilled] = useState(false);
 
+  const loadXMLHandler = (xmlString: string) => {
+    if (xmlString === undefined || xmlString === null || xmlString === '') {
+      alert('Please Copy and Paste XML in the text area');
+      return false;
+    }
+    const { rules, groupName, comments } = loadXML(xmlString);
+    setRules(rules);
+    setGroupName(groupName);
+    setComments(comments);
+    return true;
+  };
+
   const onTabChange = (id: string) => {
     setSelectedTab(id);
+  };
+
+  const addRule = (obj: IRuleChildren, index: number = 0) => {
+    setRules((prev) => {
+      const arr = [...prev];
+      arr.splice(index, 0, obj);
+      return arr;
+    });
+  };
+
+  const deleteRule = (id: string) => {
+    setRules((prev) => prev.filter((item) => item.id !== id));
+  };
+
+  const updateRule = (newRule: IRuleChildren) => {
+    setRules((prev) => {
+      return prev.map((rule) => (rule.id === newRule.id ? newRule : rule));
+    });
   };
 
   const checkFields = () => {
@@ -161,35 +212,32 @@ const MainConstructor = () => {
   const tabContent = () => {
     if (selectedTab === "constructor") {
       return (
-        // <XMLConstructor
-        //   checkers={{
-        //     ruleSerial: isRuleSerialFilled,
-        //     ruleLevel: isRuleLevelFilled,
-        //     ruleDesc: isDescFilled,
-        //   }}
-        //   addRule={addRule}
-        //   deleteRule={deleteRule}
-        //   updateRule={updateRule}
-        //   rules={rules}
-        // />
-        <div>XMLConstructor</div>
+        <XMLConstructor
+          checkers={{
+            ruleSerial: isRuleSerialFilled,
+            ruleLevel: isRuleLevelFilled,
+            ruleDesc: isDescFilled,
+          }}
+          addRule={addRule}
+          deleteRule={deleteRule}
+          updateRule={updateRule}
+          rules={rules}
+        />
       );
     }
 
     return (
-      // <XMLTextView
-      //   rules={rules}
-      //   groupName={groupName}
-      //   comments={comments}
-      //   loadXMLHandler={loadXMLHandler}
-      // />
-      <div>XMLTextView</div>
+      <XMLTextView
+        rules={rules}
+        groupName={groupName}
+        comments={comments}
+        loadXMLHandler={loadXMLHandler}
+      />
     );
   };
 
   return (
-    <EuiProvider colorMode="light">
-      <EuiPage>
+      <EuiPage style={{ padding: "30px" }}>
         <EuiFlexGroup direction="column">
           <EuiFlexGroup
             style={{ padding: "20px", display: "flex", alignItems: "center" }}
@@ -307,7 +355,6 @@ const MainConstructor = () => {
           )}
         </EuiFlexGroup>
       </EuiPage>
-    </EuiProvider>
   );
 };
 

@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import '@elastic/eui/dist/eui_theme_light.css';
-import { EuiFlexGroup, EuiFlexItem, EuiProvider } from '@elastic/eui';
+import { EuiFlexGroup, EuiFlexItem } from '@elastic/eui';
 // import YamlEditor from '@focus-reactive/react-yaml';
 
 const ElasticYaml = () => {
@@ -31,14 +31,14 @@ const ElasticYaml = () => {
   };
 
   return (
-    <EuiProvider colorMode="light">
+    // <EuiProvider colorMode="light">
       <EuiFlexGroup style={{ padding: '16px' }}>
         <EuiFlexItem>
           <div>Редактор</div>
           {/* <YamlEditor text={editorContent} onChange={handleChange} />*/}
         </EuiFlexItem>
       </EuiFlexGroup>
-    </EuiProvider>
+    // </EuiProvider>
   );
 };
 
