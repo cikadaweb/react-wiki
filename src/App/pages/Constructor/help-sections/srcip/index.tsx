@@ -20,28 +20,8 @@ export const Srcip = () => {
           (поле IP-пакета, содержащее в себе IP-адрес рабочей станции, от которой он поступил)
         </EuiText>
         <EuiBasicTable
-          items={[
-            {
-              option: 'srcip',
-              allowedValue: 'любые IP',
-              description:
-                'Используется как необходимое условие для срабатывания правила. Cравнивается любой IP-адрес или блок CIDR с IP-адресом, декодированным как srcip. Если применено "!"  то выплняеться отрицаание.',
-            },
-          ]}
-          columns={[
-            {
-              field: 'option',
-              name: 'Опция',
-            },
-            {
-              field: 'allowedValue',
-              name: 'Принимаемые значения',
-            },
-            {
-              field: 'description',
-              name: 'Описание',
-            },
-          ]}
+          items={[{ option: 'srcip', allowedValue: 'любые IP', description: 'Используется как необходимое условие для срабатывания правила. Cравнивается любой IP-адрес или блок CIDR с IP-адресом, декодированным как srcip. Если применено "!"  то выполняется отрицание.' }]}
+          columns={[{ field: 'option', name: 'Опция' }, { field: 'allowedValue', name: 'Принимаемые значения' }, { field: 'description', name: 'Описание' }]}
         />
       </EuiFlexItem>
       <EuiSpacer size="xs" />

@@ -29,7 +29,14 @@ import XMLConstructor from "./xml-constructor/xml-constructor";
 import XMLTextView from "./xml-text-view/xml-text-view";
 
 import { RulesetHandler } from "./RulesClass";
-import { validateFilenameExtension } from "./utils/ValidateFileExtension";
+
+export const validateFilenameExtension = (filename: string): string => {
+  let filenameParts = filename.split(".");
+  if (filenameParts.includes("xml")) {
+    return filename;
+  }
+  return filename + ".xml";
+};
 
 const RulesConstructor = () => {
   const initialRulesState = [

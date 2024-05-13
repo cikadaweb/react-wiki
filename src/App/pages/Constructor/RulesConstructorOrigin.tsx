@@ -1,22 +1,6 @@
 import { useState, Fragment } from "react";
 import "@elastic/eui/dist/eui_theme_light.css";
-import {
-  EuiPage,
-  EuiFlexItem,
-  EuiTitle,
-  EuiFlexGroup,
-  EuiFormRow,
-  EuiFieldText,
-  EuiButton,
-  EuiPanel,
-  EuiButtonEmpty,
-  EuiTabs,
-  EuiTab,
-  EuiSpacer,
-  EuiPopover,
-  EuiContextMenu,
-  EuiButtonIcon,
-} from "@elastic/eui";
+import { EuiPage, EuiFlexItem, EuiTitle, EuiFlexGroup, EuiFormRow, EuiFieldText, EuiButton, EuiPanel, EuiButtonEmpty, EuiTabs, EuiTab, EuiSpacer, EuiPopover, EuiContextMenu, EuiButtonIcon } from "@elastic/eui";
 import uuid from "uuid/v4";
 
 import changeFieldHandler from "./utils/change-field-handler";
@@ -29,10 +13,17 @@ import XMLConstructor from "./xml-constructor/xml-constructor";
 import XMLTextView from "./xml-text-view/xml-text-view";
 
 import { RulesetHandler } from "./RulesClass";
-import { validateFilenameExtension } from "./utils/ValidateFileExtension";
+
+export const checkFilenameXMLExtension = (filename: string): string => {
+  let filenameParams = filename.split(".");
+  if (filenameParams.includes("xml")) {
+    return filename;
+  }
+  return filename + ".xml";
+};
 
 const RulesConstructor = () => {
-  const initialRulesState = [
+  const initialRules = [
     {
       id: "1",
       nodeName: "rule",
@@ -46,10 +37,10 @@ const RulesConstructor = () => {
   ];
 
   const [isLoading, setIsLoading] = useState(false);
-  const [isHelpPopupOpen, setHelpPopupOpen] = useState(false);
+  const [isHelpPopupOpened, setHelpPopupOpened] = useState(false);
   const [selectedTab, setSelectedTab] = useState("constructor");
 
-  const [rules, setRules] = useState<IRuleChildren[]>(initialRulesState);
+  const [rules, setRules] = useState<IRuleChildren[]>(initialRules);
 
   const [fileName, setFileName] = useState("");
   const [comments, setComments] = useState<string[]>([]);
@@ -58,14 +49,14 @@ const RulesConstructor = () => {
   const [showWarningRestart, setShowWarningRestart] = useState(false);
 
   const [isFieldsFilled, setFieldsFilled] = useState(true);
-  const [isFileNameValid, setFileNameValid] = useState(false);
-  const [isGroupNameValid, setGroupNameValid] = useState(false);
-  const [isRuleSerialValid, setRuleSerialValid] = useState(false);
-  const [isRuleLevelValid, setRuleLevelValid] = useState(false);
-  const [isDescriptionValid, setDescriptionValid] = useState(false);
+  const [isFileNameFilled, setFileNameFilled] = useState(false);
+  const [isGroupNameFilled, setGroupNameFilled] = useState(false);
+  const [isRuleSerialFilled, setRuleSerialFilled] = useState(false);
+  const [isRuleLevelFilled, setRuleLevelFilled] = useState(false);
+  const [isDescFilled, setDescFilled] = useState(false);
 
   const loadXMLHandler = (xmlString: string) => {
-    if (!xmlString || xmlString.trim() === "") {
+    if (xmlString === undefined || xmlString === null || xmlString === "") {
       alert("Please Copy and Paste XML in the text area");
       return false;
     }
@@ -80,59 +71,83 @@ const RulesConstructor = () => {
     setSelectedTab(id);
   };
 
-  const addRule = (newRule: IRuleChildren, index: number = 0) => {
-    setRules((prevRules) => {
-      const updatedRules = [...prevRules];
-      updatedRules.splice(index, 0, newRule);
-      return updatedRules;
+  const addRule = (obj: IRuleChildren, index: number = 0) => {
+    setRules((prev) => {
+      const arr = [...prev];
+      arr.splice(index, 0, obj);
+      return arr;
     });
   };
 
   const deleteRule = (id: string) => {
-    setRules((prevRules) => prevRules.filter((rule) => rule.id !== id));
+    setRules((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const updateRule = (updatedRule: IRuleChildren) => {
-    setRules((prevRules) =>
-      prevRules.map((rule) => (rule.id === updatedRule.id ? updatedRule : rule))
-    );
+  const updateRule = (newRule: IRuleChildren) => {
+    setRules((prev) => {
+      return prev.map((rule) => (rule.id === newRule.id ? newRule : rule));
+    });
   };
 
-  const validateFields = () => {
-    setFileNameValid(!!fileName);
-    setGroupNameValid(!!groupName);
-    setRuleSerialValid(rules.every((rule) => !!rule.attributes.get("id")));
-    setRuleLevelValid(rules.every((rule) => !!rule.attributes.get("level")));
-    setDescriptionValid(rules.every((rule) => !!rule.children[0].value));
+  const checkFields = () => {
+    if (fileName === "") {
+      setFileNameFilled(true);
+    } else {
+      setFileNameFilled(false);
+    }
+    if (groupName === "") {
+      setGroupNameFilled(true);
+    } else {
+      setGroupNameFilled(false);
+    }
+    rules.forEach((item) => {
+      if (item.attributes.get("id") === "") {
+        setRuleSerialFilled(true);
+      } else {
+        setRuleSerialFilled(false);
+      }
+      if (item.attributes.get("level") === "") {
+        setRuleLevelFilled(true);
+      } else {
+        setRuleLevelFilled(false);
+      }
+      if (item.children[0].value === "") {
+        setDescFilled(true);
+      } else {
+        setDescFilled(false);
+      }
+    });
   };
 
   const renderTabs = (tabs: ITab[]): JSX.Element[] => {
-    return tabs.map((tab) => (
-      <EuiTab
-        key={tab.id}
-        onClick={() => onTabChange(tab.id)}
-        isSelected={tab.id === selectedTab}
-        title={tab.label}
-      >
-        {tab.label}
-      </EuiTab>
-    ));
+    return tabs.map((item) => {
+      return (
+        <EuiTab
+          key={item.id}
+          onClick={() => onTabChange(item.id)}
+          title={item.label}
+          isSelected={item.id === selectedTab}
+        >
+          {item.label}
+        </EuiTab>
+      );
+    });
   };
 
-  const resetForm = () => {
+  const deleteAll = () => {
     setFieldsFilled(true);
-    setFileNameValid(false);
-    setGroupNameValid(false);
-    setRuleSerialValid(false);
-    setRuleLevelValid(false);
-    setDescriptionValid(false);
+    setFileNameFilled(false);
+    setGroupNameFilled(false);
+    setRuleSerialFilled(false);
+    setRuleLevelFilled(false);
+    setDescFilled(false);
     setRules([
       {
         id: uuid(),
-        nodeName: "rule",
         attributes: new Map(),
         children: [],
         value: "",
+        nodeName: "rule",
       },
     ]);
     setGroupName("");
@@ -141,27 +156,28 @@ const RulesConstructor = () => {
 
   const saveFile = async () => {
     try {
-      validateFields();
+      checkFields();
       if (
         fileName &&
-        groupName &&
-        rules.every(
-          (rule) =>
-            rule.children[0].value &&
-            rule.attributes.get("level") &&
-            rule.attributes.get("id")
-        )
+        groupName !== "" &&
+        rules.every((rule) => {
+          return (
+            rule.children[0].value !== "" &&
+            rule.attributes.get("level") !== "" &&
+            rule.attributes.get("id") !== ""
+          );
+        })
       ) {
         const rulesetHandler = new RulesetHandler("rules");
         const content = convertToIndentCode(rules, null, comments, groupName);
         await rulesetHandler.updateFile(
-          validateFilenameExtension(fileName),
+          checkFilenameXMLExtension(fileName),
           content,
           true
         );
         setShowWarningRestart(true);
         setFieldsFilled(true);
-        resetForm();
+        deleteAll();
         setFileName("");
       } else {
         setFieldsFilled(false);
@@ -176,9 +192,9 @@ const RulesConstructor = () => {
       return (
         <XMLConstructor
           checkers={{
-            ruleSerial: isRuleSerialValid,
-            ruleLevel: isRuleLevelValid,
-            ruleDesc: isDescriptionValid,
+            ruleSerial: isRuleSerialFilled,
+            ruleLevel: isRuleLevelFilled,
+            ruleDesc: isDescFilled,
           }}
           addRule={addRule}
           deleteRule={deleteRule}
@@ -200,22 +216,24 @@ const RulesConstructor = () => {
 
   const helpButton = (
     <EuiButtonIcon
-      onClick={() => setHelpPopupOpen(true)}
+      onClick={() => setHelpPopupOpened(true)}
       iconType="questionInCircle"
-      aria-label="Help"
+      aria-label="Heart"
     />
   );
 
   const helpPanels = [
     {
       id: 0,
-      title: "Learn More",
+      title: "Подробнее об этом разделе",
       items: [
         {
-          name: "Syntax Rules",
+          name: "Синтаксис правил",
           onClick: (ev) => {
-            setHelpPopupOpen(true);
-            console.log(`Navigate to help section`);
+            setHelpPopupOpened(true);
+            console.log(
+              `AppNavigate.navigateToModule(ev, 'manager', { tab: 'helpPage' });`
+            );
           },
         },
       ],
@@ -230,15 +248,15 @@ const RulesConstructor = () => {
         >
           <EuiFlexItem>
             <EuiTitle>
-              <h1>XML Constructor</h1>
+              <h1>Конструктор XML</h1>
             </EuiTitle>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiPopover
               button={helpButton}
-              isOpen={isHelpPopupOpen}
+              isOpen={isHelpPopupOpened}
               closePopover={() => {
-                setHelpPopupOpen(false);
+                setHelpPopupOpened(false);
               }}
               panelPaddingSize="none"
             >
@@ -248,23 +266,25 @@ const RulesConstructor = () => {
           <EuiFlexItem grow={false}>
             <EuiButtonEmpty
               onClick={(ev) => {
-                console.log(`Navigate to rules`);
+                console.log(
+                  `AppNavigate.navigateToModule(ev, 'manager', { tab: 'rules' });`
+                );
               }}
               iconType="folderClosed"
             >
-              Edit Existing Rules
+              Редактировать существующие правила
             </EuiButtonEmpty>
           </EuiFlexItem>
           <EuiFlexItem grow={false}>
             <EuiButtonEmpty onClick={() => {}} iconType="exportAction">
-              Export in Format
+              Экспорт в формате
             </EuiButtonEmpty>
           </EuiFlexItem>
         </EuiFlexGroup>
 
         <EuiFlexItem grow={false}>
           <EuiFormRow
-            label={<div style={{ fontSize: "16px" }}>XML File Name</div>}
+            label={<div style={{ fontSize: "16px" }}>Имя XML файла</div>}
           >
             <EuiFieldText
               value={fileName}
@@ -273,7 +293,7 @@ const RulesConstructor = () => {
               }}
               type="text"
               className="filename_input"
-              isInvalid={!fileName && isFileNameValid}
+              isInvalid={isFileNameFilled && !fileName}
             />
           </EuiFormRow>
         </EuiFlexItem>
@@ -305,21 +325,21 @@ const RulesConstructor = () => {
                               groupName &&
                               rules.every((rule) => {
                                 return (
-                                  rule.children[0].value &&
-                                  rule.attributes.get("level") &&
-                                  rule.attributes.get("id")
+                                  rule.children[0].value !== "" &&
+                                  rule.attributes.get("level") !== "" &&
+                                  rule.attributes.get("id") !== ""
                                 );
                               }))
                               ? ""
-                              : "Please fill in all required fields!"}
+                              : "Заполните все обязательные поля!"}
                           </p>
-                          <EuiFormRow label={<h3>Enter Group Name</h3>}>
+                          <EuiFormRow label={<h3>Задать имя группы</h3>}>
                             <EuiFieldText
                               value={groupName}
                               onChange={(e) => {
                                 changeFieldHandler(e, setGroupName);
                               }}
-                              isInvalid={!groupName && isGroupNameValid}
+                              isInvalid={isGroupNameFilled && !groupName}
                               type="text"
                             />
                           </EuiFormRow>
@@ -327,11 +347,11 @@ const RulesConstructor = () => {
                         <EuiFlexGroup justifyContent={"flexEnd"}>
                           <EuiFlexItem grow={false}>
                             <EuiButton
-                              onClick={resetForm}
+                              onClick={deleteAll}
                               fill
                               color={"danger"}
                             >
-                              Clear
+                              Очистить
                             </EuiButton>
                           </EuiFlexItem>
                           <EuiFlexItem grow={false}>
@@ -340,7 +360,7 @@ const RulesConstructor = () => {
                               fill
                               color={"primary"}
                             >
-                              Save
+                              Сохранить
                             </EuiButton>
                           </EuiFlexItem>
                         </EuiFlexGroup>
@@ -348,7 +368,13 @@ const RulesConstructor = () => {
                       <EuiSpacer size="l" />
                       {showWarningRestart && (
                         <Fragment>
-                          <div>Restart Cluster Manager Callout</div>
+                          {/* <WzRestartClusterManagerCallout
+                              onRestarted={() => setShowWarningRestart(false)}
+                              onRestartedError={() =>
+                                setShowWarningRestart(false)
+                              }
+                            /> */}
+                          <div>WzRestartClusterManagerCallout</div>
                           <EuiSpacer size="s" />
                         </Fragment>
                       )}
