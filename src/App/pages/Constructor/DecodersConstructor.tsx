@@ -27,7 +27,7 @@ import ConstructorTabs from "./constants/const.toggle-buttons";
 import convertToIndentCode from "./utils/create-rule-tag";
 import loadXML from "./utils/load-xml";
 
-import XMLConstructor from "./xml-constructor/xml-constructor";
+import XMLConstructor from "./xml-constructor/XMLConstructor";
 import XMLTextView from "./xml-text-view/xml-text-view";
 
 import { RulesetHandler } from "./RulesClass";
