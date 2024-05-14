@@ -20,7 +20,7 @@ interface IXMLTextViewProps {
   decoders?: IDecoderChildren[];
 }
 
-const XMLNewTextView = (props: IXMLTextViewProps) => {
+const RuleXMLText = (props: IXMLTextViewProps) => {
   const { groupName, loadXMLHandler, comments } = props ?? null;
   const rules = props.rules ?? null;
   const decoders = props.decoders ?? null;
@@ -117,4 +117,4 @@ const XMLNewTextView = (props: IXMLTextViewProps) => {
   );
 };
 
-export default XMLNewTextView;
+export default RuleXMLText;

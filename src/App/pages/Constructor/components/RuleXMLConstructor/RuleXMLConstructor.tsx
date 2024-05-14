@@ -22,7 +22,7 @@ interface IXMLConstructorProps {
 
 const RuleXMLConstructor = (props: IXMLConstructorProps) => {
   const { addRule, deleteRule, updateRule, rules, checkers } = props;
-  const renderTemplateRules = rules.map((rule, index) => {
+  const renderRuleItems = rules.map((rule, index) => {
     const parametersList: IParameter[] = [];
     const attributesList: IParameter[] = [];
     let description = "";
@@ -91,7 +91,7 @@ const RuleXMLConstructor = (props: IXMLConstructorProps) => {
   });
 
   return (
-    <EuiFlexGroup direction={"column"}>{renderTemplateRules}</EuiFlexGroup>
+    <EuiFlexGroup direction={"column"}>{renderRuleItems}</EuiFlexGroup>
   );
 };
 

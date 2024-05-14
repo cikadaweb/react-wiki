@@ -27,7 +27,7 @@ import convertToIndentCode from "./utils/create-rule-tag";
 import loadXML from "./utils/load-xml";
 
 import RuleXMLConstructor from "./components/RuleXMLConstructor/RuleXMLConstructor";
-import XMLText from "./components/RuleXMLText/RuleXMLText";
+import RuleXMLText from "./components/RuleXMLText/RuleXMLText";
 
 import { RulesetHandler } from "./classes/RulesClass";
 import { validateFilenameExtension } from "./utils/validate-filename-extension";
@@ -35,14 +35,11 @@ import { validateFilenameExtension } from "./utils/validate-filename-extension";
 const RulesPage = () => {
   const initialRulesState = [
     {
-      id: "1",
+      id: uuid(),
       nodeName: "rule",
-      value: "Initial Rule 1",
+      attributes: new Map(),
       children: [],
-      attributes: new Map([
-        ["id", "1"],
-        ["level", "1"],
-      ]),
+      value: "",
     },
   ];
 
@@ -190,7 +187,7 @@ const RulesPage = () => {
 
   const renderTextConstructor = () => {
     return (
-      <XMLText
+      <RuleXMLText
         rules={rules}
         groupName={groupName}
         comments={comments}

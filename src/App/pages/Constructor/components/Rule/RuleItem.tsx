@@ -18,7 +18,7 @@ import { ParameterList } from "../ParameterList/ParameterList";
 import changeFieldHandler from "../../utils/change-field-handler";
 import createOptions from "../../utils/create-options";
 
-interface IRuleTemplateProps {
+interface IRuleItemProps {
   serial: string;
   level: string;
   description: string;
@@ -37,7 +37,7 @@ interface IRuleTemplateProps {
   };
 }
 
-const RuleTemplate = (props: IRuleTemplateProps) => {
+const RuleItem = (props: IRuleItemProps) => {
   const {
     serial,
     level,
@@ -269,4 +269,4 @@ const RuleTemplate = (props: IRuleTemplateProps) => {
   );
 };
 
-export default RuleTemplate;
+export default RuleItem;
