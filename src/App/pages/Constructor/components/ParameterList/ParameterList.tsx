@@ -2,9 +2,9 @@ import React, { useEffect } from "react";
 import uuid from "uuid/v4";
 
 import type { Dispatch, SetStateAction, ChangeEvent } from "react";
-import type { IOption, IParameter } from "../../../types";
+import type { IOption, IParameter } from "../../types";
 
-import Parameter from "./components/parameter";
+import Parameter from "../Parameter/Parameter";
 
 interface IParametersListProps {
   parametersList: IParameter[];
@@ -12,7 +12,7 @@ interface IParametersListProps {
   options: IOption[];
 }
 
-export const ParametersList = (props: IParametersListProps) => {
+export const ParameterList = (props: IParametersListProps) => {
   const { parametersList, setParametersList, options } = props;
 
   const onParameterChange = (e: ChangeEvent<HTMLSelectElement>, id: string) => {

@@ -1,6 +1,22 @@
 import { useState, Fragment } from "react";
 import "@elastic/eui/dist/eui_theme_light.css";
-import { EuiPage, EuiFlexItem, EuiTitle, EuiFlexGroup, EuiFormRow, EuiFieldText, EuiButton, EuiPanel, EuiButtonEmpty, EuiTabs, EuiTab, EuiSpacer, EuiPopover, EuiContextMenu, EuiButtonIcon } from "@elastic/eui";
+import {
+  EuiPage,
+  EuiFlexItem,
+  EuiTitle,
+  EuiFlexGroup,
+  EuiFormRow,
+  EuiFieldText,
+  EuiButton,
+  EuiPanel,
+  EuiButtonEmpty,
+  EuiTabs,
+  EuiTab,
+  EuiSpacer,
+  EuiPopover,
+  EuiContextMenu,
+  EuiButtonIcon,
+} from "@elastic/eui";
 import uuid from "uuid/v4";
 
 import changeFieldHandler from "./utils/change-field-handler";
@@ -9,10 +25,10 @@ import ConstructorTabs from "./constants/const.toggle-buttons";
 import convertToIndentCode from "./utils/create-rule-tag";
 import loadXML from "./utils/load-xml";
 
-import XMLConstructor from "./xml-constructor/xml-constructor";
-import XMLTextView from "./xml-text-view/xml-text-view";
+import RuleXMLConstructor from "./components/RuleXMLConstructor/RuleXMLConstructor";
+import RuleXMLText from "./components/RuleXMLText/RuleXMLText";
 
-import { RulesetHandler } from "./RulesClass";
+import { RulesetHandler } from "./classes/RulesClass";
 
 export const checkFilenameXMLExtension = (filename: string): string => {
   let filenameParams = filename.split(".");
@@ -190,7 +206,7 @@ const RulesConstructor = () => {
   const tabContent = () => {
     if (selectedTab === "constructor") {
       return (
-        <XMLConstructor
+        <RuleXMLConstructor
           checkers={{
             ruleSerial: isRuleSerialFilled,
             ruleLevel: isRuleLevelFilled,
@@ -205,7 +221,7 @@ const RulesConstructor = () => {
     }
 
     return (
-      <XMLTextView
+      <RuleXMLText
         rules={rules}
         groupName={groupName}
         comments={comments}

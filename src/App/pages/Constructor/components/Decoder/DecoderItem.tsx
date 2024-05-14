@@ -13,7 +13,7 @@ import uuid from 'uuid/v4';
 import type { IParameter, IDecoderChildren } from '../../types';
 import EOptionParameters from '../../constants/decoders-option-parameters';
 
-import { ParametersList } from '../rule-template/components/parameters-list/parameters-list';
+import { ParameterList } from '../ParameterList/ParameterList';
 import changeFieldHandler from '../../utils/change-field-handler';
 import createOptions from '../../utils/create-options';
 
@@ -168,7 +168,7 @@ const DecoderTemplate = (props: IDecoderTemplateProps) => {
             ) : null}
           </EuiFlexGroup>
         </EuiFlexItem>
-        <ParametersList
+        <ParameterList
           parametersList={decoderChildrenList}
           setParametersList={setDecoderChildrenList}
           options={createOptions(EOptionParameters)}

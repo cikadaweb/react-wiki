@@ -27,10 +27,10 @@ import ConstructorTabs from "./constants/const.toggle-buttons";
 import convertToIndentCode from "./utils/create-rule-tag";
 import loadXML from "./utils/load-xml";
 
-import XMLConstructor from "./xml-constructor/XMLConstructor";
-import XMLTextView from "./xml-text-view/xml-text-view";
+import RuleXMLConstructor from "./components/RuleXMLConstructor/RuleXMLConstructor";
+import XMLTextView from "./components/RuleXMLText/RuleXMLText";
 
-import { RulesetHandler } from "./RulesClass";
+import { RulesetHandler } from "./classes/RulesClass";
 
 export const checkFilenameXMLExtension = (filename: string): string => {
   let filenameParams = filename.split(".");
@@ -40,7 +40,7 @@ export const checkFilenameXMLExtension = (filename: string): string => {
   return filename + ".xml";
 };
 
-const DecodersConstructor = () => {
+const DecodersPage = () => {
   const initialRules = [
     {
       id: "1",
@@ -208,7 +208,7 @@ const DecodersConstructor = () => {
   const tabContent = () => {
     if (selectedTab === "constructor") {
       return (
-        <XMLConstructor
+        <RuleXMLConstructor
           checkers={{
             ruleSerial: isRuleSerialFilled,
             ruleLevel: isRuleLevelFilled,
@@ -409,4 +409,4 @@ const DecodersConstructor = () => {
   );
 };
 
-export default DecodersConstructor;
+export default DecodersPage;

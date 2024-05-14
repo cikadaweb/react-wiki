@@ -25,10 +25,10 @@ import ConstructorTabs from "./constants/const.toggle-buttons";
 import convertToIndentCode from "./utils/create-rule-tag";
 import loadXML from "./utils/load-xml";
 
-import XMLConstructor from "./xml-constructor/xml-constructor";
-import XMLTextView from "./xml-text-view/xml-text-view";
+import RuleXMLConstructor from "./components/RuleXMLConstructor/RuleXMLConstructor";
+import XMLTextView from "./components/RuleXMLText/RuleXMLText";
 
-import { RulesetHandler } from "./RulesClass";
+import { RulesetHandler } from "./classes/RulesClass";
 
 export const validateFilenameExtension = (filename: string): string => {
   let filenameParts = filename.split(".");
@@ -181,7 +181,7 @@ const RulesConstructor = () => {
   const tabContent = () => {
     if (selectedTab === "constructor") {
       return (
-        <XMLConstructor
+        <RuleXMLConstructor
           checkers={{
             ruleSerial: isRuleSerialValid,
             ruleLevel: isRuleLevelValid,

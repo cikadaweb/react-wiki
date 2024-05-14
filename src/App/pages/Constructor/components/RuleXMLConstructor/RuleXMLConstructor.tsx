@@ -2,11 +2,11 @@ import React from "react";
 import { EuiFlexGroup } from "@elastic/eui";
 import uuid from "uuid/v4";
 
-import type { IParameter, IRuleChildren } from "../types";
+import type { IParameter, IRuleChildren } from "../../types";
 
-import RuleTemplate from "../rule-template/rule-template";
-import EOptionAttributes from "../constants/option-attributes-list";
-import EOptionParameters from "../constants/option-parameters";
+import RuleItem from "@/App/pages/Constructor/components/Rule/RuleItem";
+import EOptionAttributes from "../../constants/option-attributes-list";
+import EOptionParameters from "../../constants/option-parameters";
 
 interface IXMLConstructorProps {
   addRule: (rule: IRuleChildren, index) => void;
@@ -20,7 +20,7 @@ interface IXMLConstructorProps {
   };
 }
 
-const XMLConstructor = (props: IXMLConstructorProps) => {
+const RuleXMLConstructor = (props: IXMLConstructorProps) => {
   const { addRule, deleteRule, updateRule, rules, checkers } = props;
   const renderTemplateRules = rules.map((rule, index) => {
     const parametersList: IParameter[] = [];
@@ -66,14 +66,13 @@ const XMLConstructor = (props: IXMLConstructorProps) => {
           });
         }
       }
-      // TODO: придумать другую реализацию для сохранения поля description
       if (child.nodeName === "description") {
         description = child.value;
       }
     });
 
     return (
-      <RuleTemplate
+      <RuleItem
         key={rule.id}
         id={rule.id}
         index={index}
@@ -96,4 +95,4 @@ const XMLConstructor = (props: IXMLConstructorProps) => {
   );
 };
 
-export default XMLConstructor;
+export default RuleXMLConstructor;

@@ -1,8 +1,8 @@
 import "./App.css";
 
 import HelpPage from "@/App/pages/Constructor/HelpPage";
-import RulesConstructor from "@/App/pages/Constructor/RulesConstructor";
+import RulesPage from "@/App/pages/Constructor/RulesPage";
 
-const App = () => <RulesConstructor />;
+const App = () => <RulesPage />;
 
 export default App;

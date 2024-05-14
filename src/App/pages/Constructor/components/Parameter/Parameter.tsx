@@ -7,10 +7,10 @@ import {
   EuiSelect,
 } from "@elastic/eui";
 import React, { ChangeEvent, useState, useEffect } from "react";
-import type { IOption } from "../../../../types";
-import parametersValue from "../../../../constants/parameters-value";
+import type { IOption } from "../../types";
+import parametersValue from "../../constants/parameters-value";
 
-import "./parameter.css";
+import "./Parameter.css";
 interface IProps {
   id: string;
   name: string;

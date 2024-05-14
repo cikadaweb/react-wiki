@@ -4,7 +4,7 @@ import uuid from 'uuid/v4';
 
 import type { IParameter, IDecoderChildren } from '../../types';
 
-import DecoderTemplate from '../decoder-template/decoder-template';
+import DecoderItem from '@/App/pages/Constructor/components/Decoder/DecoderItem';
 import EOptionAttributes from '../../constants/option-attributes-list';
 import EOptionParameters from '../../constants/decoders-option-parameters';
 
@@ -56,14 +56,13 @@ const XMLConstructor = (props: IXMLConstructorProps) => {
           });
         }
       }
-      // TODO: придумать другую реализацию для сохранения поля description
       if (child.nodeName === 'description') {
         description = child.value;
       }
     });
 
     return (
-      <DecoderTemplate
+      <DecoderItem
         key={decoder.id}
         id={decoder.id}
         index={index}
