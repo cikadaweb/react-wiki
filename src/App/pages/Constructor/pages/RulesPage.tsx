@@ -19,36 +19,27 @@ import {
 } from "@elastic/eui";
 import uuid from "uuid/v4";
 
-import changeFieldHandler from "./utils/change-field-handler";
-import { IRuleChildren, ITab } from "./types";
-import ConstructorTabs from "./constants/const.toggle-buttons";
-import convertToIndentCode from "./utils/create-rule-tag";
-import loadXML from "./utils/load-xml";
+import { IRuleChildren, ITab } from "../types";
 
-import RuleXMLConstructor from "./components/RuleXMLConstructor/RuleXMLConstructor";
-import XMLTextView from "./components/RuleXMLText/RuleXMLText";
+import changeFieldHandler from "../utils/change-field-handler";
+import ConstructorTabs from "../constants/const.toggle-buttons";
+import convertToIndentCode from "../utils/create-rule-tag";
+import loadXML from "../utils/load-xml";
 
-import { RulesetHandler } from "./classes/RulesClass";
+import RuleXMLConstructor from "../components/RuleXMLConstructor/RuleXMLConstructor";
+import RuleXMLText from "../components/RuleXMLText/RuleXMLText";
 
-export const validateFilenameExtension = (filename: string): string => {
-  let filenameParts = filename.split(".");
-  if (filenameParts.includes("xml")) {
-    return filename;
-  }
-  return filename + ".xml";
-};
+import { RulesetHandler } from "../classes/RulesClass";
+import { validateFilenameExtension } from "../utils/validate-filename-extension";
 
-const RulesConstructor = () => {
+const RulesPage = () => {
   const initialRulesState = [
     {
-      id: "1",
+      id: uuid(),
       nodeName: "rule",
-      value: "Initial Rule 1",
+      attributes: new Map(),
       children: [],
-      attributes: new Map([
-        ["id", "1"],
-        ["level", "1"],
-      ]),
+      value: "",
     },
   ];
 
@@ -178,25 +169,25 @@ const RulesConstructor = () => {
     }
   };
 
-  const tabContent = () => {
-    if (selectedTab === "constructor") {
-      return (
-        <RuleXMLConstructor
-          checkers={{
-            ruleSerial: isRuleSerialValid,
-            ruleLevel: isRuleLevelValid,
-            ruleDesc: isDescriptionValid,
-          }}
-          addRule={addRule}
-          deleteRule={deleteRule}
-          updateRule={updateRule}
-          rules={rules}
-        />
-      );
-    }
-
+  const renderXMLConstructor = () => {
     return (
-      <XMLTextView
+      <RuleXMLConstructor
+        checkers={{
+          ruleSerial: isRuleSerialValid,
+          ruleLevel: isRuleLevelValid,
+          ruleDesc: isDescriptionValid,
+        }}
+        addRule={addRule}
+        deleteRule={deleteRule}
+        updateRule={updateRule}
+        rules={rules}
+      />
+    );
+  };
+
+  const renderTextConstructor = () => {
+    return (
+      <RuleXMLText
         rules={rules}
         groupName={groupName}
         comments={comments}
@@ -286,90 +277,93 @@ const RulesConstructor = () => {
         </EuiFlexItem>
 
         <EuiTabs size="m">{renderTabs(ConstructorTabs)}</EuiTabs>
+
         {!isLoading && (
-          <EuiFlexItem>
-            <EuiPage>
-              <EuiFlexGroup direction={"column"}>
-                <EuiPanel style={{ padding: "0 40px 20px 40px" }}>
-                  {selectedTab === "constructor" && (
-                    <>
-                      <EuiFlexGroup
-                        style={{ marginTop: "20px" }}
-                        alignItems={"center"}
-                        justifyContent={"spaceBetween"}
-                      >
-                        <EuiFlexItem style={{ marginLeft: 0 }} grow={false}>
-                          <p
-                            className="euiText"
-                            style={{
-                              alignSelf: "flex-start",
-                              color: "red",
-                              paddingBottom: "15px",
+        <EuiFlexItem>
+          <EuiPage>
+            <EuiFlexGroup direction={"column"}>
+              <EuiPanel style={{ padding: "0 40px 20px 40px" }}>
+                {selectedTab === "constructor" && (
+                  <>
+                    <EuiFlexGroup
+                      style={{ marginTop: "20px" }}
+                      alignItems={"center"}
+                      justifyContent={"spaceBetween"}
+                    >
+                      <EuiFlexItem style={{ marginLeft: 0 }} grow={false}>
+                        <p
+                          className="euiText"
+                          style={{
+                            alignSelf: "flex-start",
+                            color: "red",
+                            paddingBottom: "15px",
+                          }}
+                        >
+                          {isFieldsFilled ||
+                          (fileName &&
+                            groupName &&
+                            rules.every((rule) => {
+                              return (
+                                rule.children[0].value &&
+                                rule.attributes.get("level") &&
+                                rule.attributes.get("id")
+                              );
+                            }))
+                            ? ""
+                            : "Please fill in all required fields!"}
+                        </p>
+                        <EuiFormRow label={<h3>Enter Group Name</h3>}>
+                          <EuiFieldText
+                            value={groupName}
+                            onChange={(e) => {
+                              changeFieldHandler(e, setGroupName);
                             }}
+                            isInvalid={!groupName && isGroupNameValid}
+                            type="text"
+                          />
+                        </EuiFormRow>
+                      </EuiFlexItem>
+                      <EuiFlexGroup justifyContent={"flexEnd"}>
+                        <EuiFlexItem grow={false}>
+                          <EuiButton
+                            onClick={resetForm}
+                            fill
+                            color={"danger"}
                           >
-                            {isFieldsFilled ||
-                            (fileName &&
-                              groupName &&
-                              rules.every((rule) => {
-                                return (
-                                  rule.children[0].value &&
-                                  rule.attributes.get("level") &&
-                                  rule.attributes.get("id")
-                                );
-                              }))
-                              ? ""
-                              : "Please fill in all required fields!"}
-                          </p>
-                          <EuiFormRow label={<h3>Enter Group Name</h3>}>
-                            <EuiFieldText
-                              value={groupName}
-                              onChange={(e) => {
-                                changeFieldHandler(e, setGroupName);
-                              }}
-                              isInvalid={!groupName && isGroupNameValid}
-                              type="text"
-                            />
-                          </EuiFormRow>
+                            Clear
+                          </EuiButton>
                         </EuiFlexItem>
-                        <EuiFlexGroup justifyContent={"flexEnd"}>
-                          <EuiFlexItem grow={false}>
-                            <EuiButton
-                              onClick={resetForm}
-                              fill
-                              color={"danger"}
-                            >
-                              Clear
-                            </EuiButton>
-                          </EuiFlexItem>
-                          <EuiFlexItem grow={false}>
-                            <EuiButton
-                              onClick={saveFile}
-                              fill
-                              color={"primary"}
-                            >
-                              Save
-                            </EuiButton>
-                          </EuiFlexItem>
-                        </EuiFlexGroup>
+                        <EuiFlexItem grow={false}>
+                          <EuiButton
+                            onClick={saveFile}
+                            fill
+                            color={"primary"}
+                          >
+                            Save
+                          </EuiButton>
+                        </EuiFlexItem>
                       </EuiFlexGroup>
-                      <EuiSpacer size="l" />
-                      {showWarningRestart && (
-                        <Fragment>
-                          <div>Restart Cluster Manager Callout</div>
-                          <EuiSpacer size="s" />
-                        </Fragment>
-                      )}
-                    </>
-                  )}
-                  {tabContent()}
-                </EuiPanel>
-              </EuiFlexGroup>
-            </EuiPage>
-          </EuiFlexItem>
+                    </EuiFlexGroup>
+                    <EuiSpacer size="l" />
+                    {showWarningRestart && (
+                      <Fragment>
+                        <div>Restart Cluster Manager Callout</div>
+                        <EuiSpacer size="s" />
+                      </Fragment>
+                    )}
+                  </>
+                )}
+                {selectedTab === "constructor"
+                  ? renderXMLConstructor()
+                  : renderTextConstructor()}
+              </EuiPanel>
+            </EuiFlexGroup>
+          </EuiPage>
+        </EuiFlexItem>
         )}
       </EuiFlexGroup>
     </EuiPage>
   );
 };
 
-export default RulesConstructor;
+export default RulesPage;

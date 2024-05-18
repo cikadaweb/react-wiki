@@ -19,16 +19,16 @@ import {
 } from "@elastic/eui";
 import uuid from "uuid/v4";
 
-import changeFieldHandler from "./utils/change-field-handler";
-import { IRuleChildren, ITab } from "./types";
-import ConstructorTabs from "./constants/const.toggle-buttons";
-import convertToIndentCode from "./utils/create-rule-tag";
-import loadXML from "./utils/load-xml";
+import changeFieldHandler from "../utils/change-field-handler";
+import { IRuleChildren, ITab } from "../types";
+import ConstructorTabs from "../constants/const.toggle-buttons";
+import convertToIndentCode from "../utils/create-rule-tag";
+import loadXML from "../utils/load-xml";
 
-import RuleXMLConstructor from "./components/RuleXMLConstructor/RuleXMLConstructor";
-import RuleXMLText from "./components/RuleXMLText/RuleXMLText";
+import RuleXMLConstructor from "../components/RuleXMLConstructor/RuleXMLConstructor";
+import RuleXMLText from "../components/RuleXMLText/RuleXMLText";
 
-import { RulesetHandler } from "./classes/RulesClass";
+import { RulesetHandler } from "../classes/RulesClass";
 
 export const checkFilenameXMLExtension = (filename: string): string => {
   let filenameParams = filename.split(".");
