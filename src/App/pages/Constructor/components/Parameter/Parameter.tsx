@@ -5,6 +5,7 @@ import {
   EuiFlexItem,
   EuiFormRow,
   EuiSelect,
+  EuiButtonEmpty
 } from "@elastic/eui";
 import React, { ChangeEvent, useState, useEffect } from "react";
 import type { IOption } from "../../types";
@@ -25,6 +26,7 @@ interface IProps {
   isAddButtonShown: boolean;
   isDeleteButtonShown: boolean;
   options: IOption[];
+  parameterType: 'attribute' | 'children';
 }
 
 const Parameter = (props: IProps) => {
@@ -39,6 +41,7 @@ const Parameter = (props: IProps) => {
     options,
     isAddButtonShown,
     isDeleteButtonShown,
+    parameterType
   } = props;
   const [isEdit, setIsEdit] = useState(false);
   const [values, setValues] = useState([]);
@@ -62,82 +65,98 @@ const Parameter = (props: IProps) => {
   }, [name]);
 
   return (
-    <EuiFlexItem
-      key={id}
-      style={{
-        flexDirection: "row",
-        justifyContent: "flex-start",
-        margin: "16px 0",
-      }}
-      grow={false}
-    >
-      <EuiFormRow
-        style={{ marginRight: "10px" }}
-        label="Дополнительный параметр"
-      >
-        <EuiSelect
-          style={{ width: "400px" }}
-          hasNoInitialSelection
-          disabled={!isEdit}
-          options={options}
-          value={name}
-          onChange={(e) => onParameterChange(e, id)}
-        />
-      </EuiFormRow>
-      <EuiFormRow label="Значение" style={{ marginTop: "0" }}>
-        {values.length > 0 ? (
-          <EuiSelect
-            style={{ width: "400px" }}
-            hasNoInitialSelection
-            disabled={!isEdit}
-            options={values}
-            value={value}
-            onChange={(e) => onParameterValueChange(e, id)}
-          />
-        ) : (
-          <EuiFieldText
-            className={!name || !value ? "parameter-empty" : ""}
-            value={value}
-            disabled={!isEdit}
-            onChange={(e) => onParameterValueChange(e, id)}
-            style={{ width: "400px" }}
-            type="text"
-          />
-        )}
-      </EuiFormRow>
-      <EuiFlexGroup
-        responsive={false}
-        gutterSize="s"
-        alignItems="center"
-        style={{ justifyContent: "flex-start", marginLeft: "5px" }}
-      >
-        <EuiFlexItem grow={false}>
-          <EuiButtonIcon
-            onClick={changeIsEdit}
-            iconType={isEdit ? "eye" : "eyeClosed"}
-            iconSize="s"
-            aria-label="Hide"
-          />
-        </EuiFlexItem>
-        {isAddButtonShown && (
-          <EuiButtonIcon
-            iconSize="s"
-            onClick={onAddParameterClick}
-            iconType="plusInCircle"
-            aria-label="Add"
-          />
-        )}
-        {isDeleteButtonShown && (
-          <EuiButtonIcon
-            iconSize="s"
-            onClick={() => onDeleteParameterClick(id)}
-            iconType="trash"
-            color="danger"
-            aria-label="Delete"
-          />
-        )}
-      </EuiFlexGroup>
-    </EuiFlexItem>
+      <>
+        <EuiFlexGroup style={{marginBottom: '10px'}}>
+          <EuiFlexItem style={{width: '90%'}}>
+            <EuiFlexGroup
+                key={id}
+                gutterSize="none"
+                direction="column"
+            >
+              <EuiFlexItem>
+                <EuiFormRow
+                    label={parameterType === 'attribute' ? 'Атрибут к тегу <rule>:' : 'Дочерний параметр:'}
+                    fullWidth
+                >
+                  <EuiSelect
+                      hasNoInitialSelection
+                      disabled={!isEdit}
+                      options={options}
+                      value={name}
+                      fullWidth
+                      onChange={(e) => onParameterChange(e, id)}
+                  />
+                </EuiFormRow>
+              </EuiFlexItem>
+
+              <EuiFlexItem>
+                <EuiFormRow label="Значение:" fullWidth>
+                  {values.length > 0 ? (
+                      <EuiSelect
+                          hasNoInitialSelection
+                          disabled={!isEdit}
+                          options={values}
+                          value={value}
+                          onChange={(e) => onParameterValueChange(e, id)}
+                          fullWidth
+                      />
+                  ) : (
+                      <EuiFieldText
+                          className={!name || !value ? "parameter-empty" : ""}
+                          value={value}
+                          disabled={!isEdit}
+                          onChange={(e) => onParameterValueChange(e, id)}
+                          fullWidth
+                          type="text"
+                      />
+                  )}
+                </EuiFormRow>
+              </EuiFlexItem>
+
+            </EuiFlexGroup>
+          </EuiFlexItem>
+
+          <EuiFlexItem grow={false} style={{width: '10%'}}>
+            <EuiFlexGroup
+                responsive={false}
+                gutterSize="s"
+                alignItems="center"
+                style={{ justifyContent: "flex-start", marginLeft: "5px" }}
+            >
+              <EuiFlexItem grow={false}>
+                <EuiButtonIcon
+                    onClick={changeIsEdit}
+                    iconType={isEdit ? "eye" : "eyeClosed"}
+                    iconSize="m"
+                    aria-label="Hide"
+                />
+              </EuiFlexItem>
+              {isDeleteButtonShown && (
+                  <EuiButtonIcon
+                      iconSize="m"
+                      onClick={() => onDeleteParameterClick(id)}
+                      iconType="trash"
+                      color="danger"
+                      aria-label="Delete"
+                  />
+              )}
+            </EuiFlexGroup>
+          </EuiFlexItem>
+        </EuiFlexGroup>
+
+        <EuiFlexGroup>
+          <EuiFlexItem grow={false}>
+            {isAddButtonShown && (
+              <EuiButtonEmpty
+                  onClick={onAddParameterClick}
+                  iconType="createSingleMetricJob"
+                  aria-label="Add"
+              >{parameterType === 'attribute' ? 'Добавить атрибут' : 'Добавить дочерний элемент'}
+              </EuiButtonEmpty>
+            )}
+          </EuiFlexItem>
+        </EuiFlexGroup>
+      </>
   );
 };
 

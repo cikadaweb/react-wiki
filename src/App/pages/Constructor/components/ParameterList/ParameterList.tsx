@@ -10,10 +10,11 @@ interface IParametersListProps {
   parametersList: IParameter[];
   setParametersList: Dispatch<SetStateAction<IParameter[]>>;
   options: IOption[];
+  parameterType: 'attribute' | 'children';
 }
 
 export const ParameterList = (props: IParametersListProps) => {
-  const { parametersList, setParametersList, options } = props;
+  const { parametersList, setParametersList, options, parameterType } = props;
 
   const onParameterChange = (e: ChangeEvent<HTMLSelectElement>, id: string) => {
     setParametersList((prev) =>
@@ -81,6 +82,7 @@ export const ParameterList = (props: IParametersListProps) => {
         }
         isDeleteButtonShown={parametersList.length > 1}
         options={options}
+        parameterType={parameterType}
       />
     );
   });

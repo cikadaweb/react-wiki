@@ -172,6 +172,7 @@ const DecoderTemplate = (props: IDecoderTemplateProps) => {
           parametersList={decoderChildrenList}
           setParametersList={setDecoderChildrenList}
           options={createOptions(EOptionParameters)}
+          parameterType="children"
         />
       </EuiPanel>
       <EuiSpacer size="l" />

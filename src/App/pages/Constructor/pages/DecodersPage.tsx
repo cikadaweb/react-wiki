@@ -23,7 +23,6 @@ import uuid from "uuid/v4";
 
 import changeFieldHandler from "../utils/change-field-handler";
 import { IRuleChildren, ITab } from "../types";
-import ConstructorTabs from "../constants/const.toggle-buttons";
 import convertToIndentCode from "../utils/create-rule-tag";
 import loadXML from "../utils/load-xml";
 
@@ -316,7 +315,7 @@ const DecodersPage = () => {
           </EuiFormRow>
         </EuiFlexItem>
 
-        <EuiTabs size="m">{renderTabs(ConstructorTabs)}</EuiTabs>
+        <EuiTabs size="m"></EuiTabs>
         {!isLoading && (
           <EuiFlexItem>
             <EuiPage>

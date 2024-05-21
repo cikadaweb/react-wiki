@@ -8,26 +8,21 @@ import {
   EuiFormRow,
   EuiFieldText,
   EuiButton,
-  EuiPanel,
-  EuiButtonEmpty,
-  EuiTabs,
-  EuiTab,
+  EuiText,
   EuiSpacer,
-  EuiPopover,
-  EuiContextMenu,
-  EuiButtonIcon,
+  EuiSwitch,
 } from "@elastic/eui";
 import uuid from "uuid/v4";
 
-import { IRuleChildren, ITab } from "../types";
+import { IRuleChildren } from "../types";
 
 import changeFieldHandler from "../utils/change-field-handler";
-import ConstructorTabs from "../constants/const.toggle-buttons";
 import convertToIndentCode from "../utils/create-rule-tag";
 import loadXML from "../utils/load-xml";
 
 import RuleXMLConstructor from "../components/RuleXMLConstructor/RuleXMLConstructor";
 import RuleXMLText from "../components/RuleXMLText/RuleXMLText";
+import WzRestartClusterManagerCallout from '../components/RestartClusterManagerCallout/WzRestartClusterManagerCalloute';
 
 import { RulesetHandler } from "../classes/RulesClass";
 import { validateFilenameExtension } from "../utils/validate-filename-extension";
@@ -44,8 +39,7 @@ const RulesPage = () => {
   ];
 
   const [isLoading, setIsLoading] = useState(false);
-  const [isHelpPopupOpen, setHelpPopupOpen] = useState(false);
-  const [selectedTab, setSelectedTab] = useState("constructor");
+  const [isConstructorMode, setIsConstructorMode] = useState<boolean>(true);
 
   const [rules, setRules] = useState<IRuleChildren[]>(initialRulesState);
 
@@ -53,7 +47,7 @@ const RulesPage = () => {
   const [comments, setComments] = useState<string[]>([]);
   const [groupName, setGroupName] = useState("");
 
-  const [showWarningRestart, setShowWarningRestart] = useState(false);
+  const [isWazuhMangerRestartAlert, setIsWazuhMangerRestartAlert] = useState(false);
 
   const [isFieldsFilled, setFieldsFilled] = useState(true);
   const [isFileNameValid, setFileNameValid] = useState(false);
@@ -74,8 +68,8 @@ const RulesPage = () => {
     return true;
   };
 
-  const onTabChange = (id: string) => {
-    setSelectedTab(id);
+  const onSwitchChange = () => {
+    setIsConstructorMode(prevState => !prevState);
   };
 
   const addRule = (newRule: IRuleChildren, index: number = 0) => {
@@ -102,19 +96,6 @@ const RulesPage = () => {
     setRuleSerialValid(rules.every((rule) => !!rule.attributes.get("id")));
     setRuleLevelValid(rules.every((rule) => !!rule.attributes.get("level")));
     setDescriptionValid(rules.every((rule) => !!rule.children[0].value));
-  };
-
-  const renderTabs = (tabs: ITab[]): JSX.Element[] => {
-    return tabs.map((tab) => (
-      <EuiTab
-        key={tab.id}
-        onClick={() => onTabChange(tab.id)}
-        isSelected={tab.id === selectedTab}
-        title={tab.label}
-      >
-        {tab.label}
-      </EuiTab>
-    ));
   };
 
   const resetForm = () => {
@@ -157,7 +138,7 @@ const RulesPage = () => {
           content,
           true
         );
-        setShowWarningRestart(true);
+        setIsWazuhMangerRestartAlert(true);
         setFieldsFilled(true);
         resetForm();
         setFileName("");
@@ -196,170 +177,149 @@ const RulesPage = () => {
     );
   };
 
-  const helpButton = (
-    <EuiButtonIcon
-      onClick={() => setHelpPopupOpen(true)}
-      iconType="questionInCircle"
-      aria-label="Help"
-    />
-  );
-
-  const helpPanels = [
-    {
-      id: 0,
-      title: "Learn More",
-      items: [
-        {
-          name: "Syntax Rules",
-          onClick: (ev) => {
-            setHelpPopupOpen(true);
-            console.log(`Navigate to help section`);
-          },
-        },
-      ],
-    },
-  ];
-
   return (
     <EuiPage style={{ padding: "30px" }}>
       <EuiFlexGroup direction="column">
-        <EuiFlexGroup
-          style={{ padding: "20px", display: "flex", alignItems: "center" }}
-        >
-          <EuiFlexItem>
-            <EuiTitle>
-              <h1>XML Constructor</h1>
-            </EuiTitle>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiPopover
-              button={helpButton}
-              isOpen={isHelpPopupOpen}
-              closePopover={() => {
-                setHelpPopupOpen(false);
-              }}
-              panelPaddingSize="none"
-            >
-              <EuiContextMenu initialPanelId={0} panels={helpPanels} />
-            </EuiPopover>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiButtonEmpty
-              onClick={(ev) => {
-                console.log(`Navigate to rules`);
-              }}
-              iconType="folderClosed"
-            >
-              Edit Existing Rules
-            </EuiButtonEmpty>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiButtonEmpty onClick={() => {}} iconType="exportAction">
-              Export in Format
-            </EuiButtonEmpty>
-          </EuiFlexItem>
-        </EuiFlexGroup>
 
-        <EuiFlexItem grow={false}>
+        <EuiFlexItem>
+          <EuiTitle size="m">
+            <h1>Конструктор правил</h1>
+          </EuiTitle>
+        </EuiFlexItem>
+
+        <EuiFlexItem>
+
+          <EuiFlexGroup justifyContent="spaceBetween">
+            <EuiFlexItem>
+              <EuiText size="m" style={{marginBottom: '15px'}}>
+                Отразить в виде:
+              </EuiText>
+              <EuiSwitch
+                  label="Конструктор / Текст"
+                  checked={isConstructorMode}
+                  onChange={onSwitchChange}
+              />
+            </EuiFlexItem>
+
+            <EuiFlexItem>
+              <EuiFlexGroup justifyContent={"flexEnd"}>
+
+                <EuiFlexItem grow={false}>
+                  <EuiButton
+                      onClick={() => {}}
+                      iconType="questionInCircle"
+                      iconSide="right"
+                  >
+                    Справочник
+                  </EuiButton>
+                </EuiFlexItem>
+
+                <EuiFlexItem grow={false}>
+                  <EuiButton
+                      onClick={resetForm}
+                      color="danger"
+                      iconType="refresh"
+                      iconSide="right"
+                  >
+                    Очистить форму
+                  </EuiButton>
+                </EuiFlexItem>
+
+                <EuiFlexItem grow={false}>
+                  <EuiButton
+                      onClick={saveFile}
+                      color="secondary"
+                      fill
+                      iconType="save"
+                      iconSide="right"
+                  >
+                    Сохранить
+                  </EuiButton>
+                </EuiFlexItem>
+              </EuiFlexGroup>
+            </EuiFlexItem>
+          </EuiFlexGroup>
+        </EuiFlexItem>
+
+        <EuiFlexItem>
           <EuiFormRow
-            label={<div style={{ fontSize: "16px" }}>XML File Name</div>}
+              label="Имя XML файла:"
+              fullWidth
+              helpText="wazuh-rules-example"
           >
             <EuiFieldText
-              value={fileName}
-              onChange={(e) => {
-                changeFieldHandler(e, setFileName);
-              }}
-              type="text"
-              className="filename_input"
-              isInvalid={!fileName && isFileNameValid}
+                value={fileName}
+                onChange={(e) => {
+                  changeFieldHandler(e, setFileName);
+                }}
+                type="text"
+                className="filename_input"
+                isInvalid={!fileName && isFileNameValid}
+                fullWidth
             />
           </EuiFormRow>
         </EuiFlexItem>
 
-        <EuiTabs size="m">{renderTabs(ConstructorTabs)}</EuiTabs>
-
         {!isLoading && (
-        <EuiFlexItem>
-          <EuiPage>
-            <EuiFlexGroup direction={"column"}>
-              <EuiPanel style={{ padding: "0 40px 20px 40px" }}>
-                {selectedTab === "constructor" && (
-                  <>
-                    <EuiFlexGroup
-                      style={{ marginTop: "20px" }}
-                      alignItems={"center"}
-                      justifyContent={"spaceBetween"}
-                    >
-                      <EuiFlexItem style={{ marginLeft: 0 }} grow={false}>
+          <EuiFlexItem>
+                  {isConstructorMode && (
+                    <EuiFlexGroup direction="column" gutterSize="m">
+                      <EuiFlexItem>
                         <p
-                          className="euiText"
-                          style={{
-                            alignSelf: "flex-start",
-                            color: "red",
-                            paddingBottom: "15px",
-                          }}
+                            className="euiText"
+                            style={{
+                              alignSelf: "flex-start",
+                              color: "red",
+                              paddingBottom: "15px",
+                            }}
                         >
                           {isFieldsFilled ||
                           (fileName &&
-                            groupName &&
-                            rules.every((rule) => {
-                              return (
-                                rule.children[0].value &&
-                                rule.attributes.get("level") &&
-                                rule.attributes.get("id")
-                              );
-                            }))
-                            ? ""
-                            : "Please fill in all required fields!"}
+                              groupName &&
+                              rules.every((rule) => {
+                                return (
+                                    rule.children[0].value &&
+                                    rule.attributes.get("level") &&
+                                    rule.attributes.get("id")
+                                );
+                              }))
+                              ? ""
+                              : "Please fill in all required fields!"}
                         </p>
-                        <EuiFormRow label={<h3>Enter Group Name</h3>}>
+                      </EuiFlexItem>
+
+                      <EuiFlexItem>
+                        <EuiFormRow
+                            label={<h3>Имя группы: </h3>}
+                            fullWidth
+                        >
                           <EuiFieldText
-                            value={groupName}
-                            onChange={(e) => {
-                              changeFieldHandler(e, setGroupName);
-                            }}
-                            isInvalid={!groupName && isGroupNameValid}
-                            type="text"
+                              value={groupName}
+                              onChange={(e) => {
+                                changeFieldHandler(e, setGroupName);
+                              }}
+                              isInvalid={!groupName && isGroupNameValid}
+                              fullWidth
+                              type="text"
                           />
                         </EuiFormRow>
                       </EuiFlexItem>
-                      <EuiFlexGroup justifyContent={"flexEnd"}>
-                        <EuiFlexItem grow={false}>
-                          <EuiButton
-                            onClick={resetForm}
-                            fill
-                            color={"danger"}
-                          >
-                            Clear
-                          </EuiButton>
-                        </EuiFlexItem>
-                        <EuiFlexItem grow={false}>
-                          <EuiButton
-                            onClick={saveFile}
-                            fill
-                            color={"primary"}
-                          >
-                            Save
-                          </EuiButton>
-                        </EuiFlexItem>
-                      </EuiFlexGroup>
+
+                      {isWazuhMangerRestartAlert && (
+                        <Fragment>
+                          <WzRestartClusterManagerCallout
+                              onRestarted={() => setIsWazuhMangerRestartAlert(false)}
+                              onRestartedError={() => setIsWazuhMangerRestartAlert(false)}
+                          />
+                          <EuiSpacer size="s" />
+                        </Fragment>
+                      )}
                     </EuiFlexGroup>
-                    <EuiSpacer size="l" />
-                    {showWarningRestart && (
-                      <Fragment>
-                        <div>Restart Cluster Manager Callout</div>
-                        <EuiSpacer size="s" />
-                      </Fragment>
-                    )}
-                  </>
-                )}
-                {selectedTab === "constructor"
-                  ? renderXMLConstructor()
-                  : renderTextConstructor()}
-              </EuiPanel>
-            </EuiFlexGroup>
-          </EuiPage>
-        </EuiFlexItem>
+                  )}
+                  {isConstructorMode
+                    ? renderXMLConstructor()
+                    : renderTextConstructor()}
+          </EuiFlexItem>
         )}
       </EuiFlexGroup>
     </EuiPage>

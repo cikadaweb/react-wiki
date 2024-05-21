@@ -1,5 +1,4 @@
 import React from "react";
-import { EuiFlexGroup } from "@elastic/eui";
 import uuid from "uuid/v4";
 
 import type { IParameter, IRuleChildren } from "../../types";
@@ -91,7 +90,7 @@ const RuleXMLConstructor = (props: IXMLConstructorProps) => {
   });
 
   return (
-    <EuiFlexGroup direction={"column"}>{renderRuleItems}</EuiFlexGroup>
+    <>{renderRuleItems}</>
   );
 };
 

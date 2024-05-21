@@ -7,6 +7,7 @@ import {
   EuiFlexItem,
   EuiFlexGroup,
   EuiButtonIcon,
+  EuiTextArea
 } from "@elastic/eui";
 import uuid from 'uuid/v4';
 
@@ -52,6 +53,7 @@ const RuleItem = (props: IRuleItemProps) => {
     index,
     checkers,
   } = props;
+
   const [ruleChildrenList, setRuleChildrenList] = useState(childrenList);
   const [ruleAttributesList, setRuleAttributesList] = useState(attributesList);
   const [ruleSerial, setRuleSerial] = useState(serial);
@@ -176,93 +178,100 @@ const RuleItem = (props: IRuleItemProps) => {
 
   return (
     <>
-      <EuiPanel style={{ backgroundColor: "#FAFBFD", boxShadow: "none" }}>
-        <EuiFlexItem
-          style={{
-            flexDirection: "row",
-            justifyContent: "space-between",
-            marginBottom: "16px",
-          }}
-          grow={false}
-        >
-          <EuiFormRow label="Добавить номер правила">
-            <EuiFieldText
-              style={{ width: "400px" }}
-              onChange={(e) => changeFieldHandler(e, setRuleSerial)}
-              value={ruleSerial}
-              type="text"
-              isInvalid={checkers.ruleSerial && !ruleSerial}
-            />
-          </EuiFormRow>
-          <EuiFlexGroup
-            responsive={false}
-            gutterSize="s"
-            alignItems="center"
-            style={{ justifyContent: "flex-end" }}
-          >
-            <EuiFlexItem grow={false}>
-              <EuiButtonIcon iconType="eye" aria-label="Hide" />
-            </EuiFlexItem>
+      <EuiFlexGroup justifyContent="flexEnd" style={{margin: '10px 0'}}>
+        <EuiFlexItem grow={false}>
+          <EuiButtonIcon iconType="eye" aria-label="Hide" />
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiButtonIcon
+              onClick={onCopyRuleClick}
+              iconType="copy"
+              aria-label="Copy"
+          />
+        </EuiFlexItem>
+
+        <EuiFlexItem grow={false}>
+          <EuiButtonIcon
+              onClick={onAddRuleClick}
+              iconType="plusInCircle"
+              aria-label="Add"
+          />
+        </EuiFlexItem>
+
+        {deleteButtonShown ? (
             <EuiFlexItem grow={false}>
               <EuiButtonIcon
-                onClick={onCopyRuleClick}
-                iconType="copy"
-                aria-label="Copy"
-              />
-            </EuiFlexItem>
-            <EuiFlexItem grow={false}>
-              <EuiButtonIcon
-                onClick={onAddRuleClick}
-                iconType="plusInCircle"
-                aria-label="Add"
-              />
-            </EuiFlexItem>
-            {deleteButtonShown ? (
-              <EuiFlexItem grow={false}>
-                <EuiButtonIcon
                   onClick={onDeleteRuleClick}
                   iconType="trash"
                   color="danger"
                   aria-label="Delete"
+              />
+            </EuiFlexItem>
+        ) : null}
+      </EuiFlexGroup>
+
+      <EuiPanel style={{ backgroundColor: "#FAFBFD", boxShadow: "none" }}>
+        <EuiFlexGroup direction="column">
+          <EuiFlexItem>
+            <EuiFormRow label="Добавить номер правила:" fullWidth>
+              <EuiFieldText
+                  onChange={(e) => changeFieldHandler(e, setRuleSerial)}
+                  value={ruleSerial}
+                  type="text"
+                  isInvalid={checkers.ruleSerial && !ruleSerial}
+                  fullWidth
+              />
+            </EuiFormRow>
+          </EuiFlexItem>
+
+          <EuiFlexItem>
+            <EuiFormRow label="Добавить уровень важности правила:" fullWidth>
+              <EuiFieldText
+                  onChange={(e) => changeFieldHandler(e, setRuleLevel)}
+                  value={ruleLevel}
+                  type="number"
+                  fullWidth
+                  min={0}
+                  max={16}
+                  isInvalid={checkers.ruleLevel && !ruleLevel}
+              />
+            </EuiFormRow>
+          </EuiFlexItem>
+
+          <EuiFlexItem>
+            <EuiFormRow label="Добавить описание:" fullWidth>
+              <EuiTextArea
+                  onChange={(e) => changeFieldHandler(e, setRuleDescription)}
+                  value={ruleDescription}
+                  isInvalid={checkers.ruleDesc && !ruleDescription}
+                  fullWidth
+              />
+            </EuiFormRow>
+          </EuiFlexItem>
+
+          <EuiFlexItem>
+            <EuiFlexGroup>
+              <EuiFlexItem>
+                <ParameterList
+                    parametersList={ruleAttributesList}
+                    setParametersList={setRuleAttributesList}
+                    options={createOptions(EOptionAttributes)}
+                    parameterType="attribute"
                 />
               </EuiFlexItem>
-            ) : null}
-          </EuiFlexGroup>
-        </EuiFlexItem>
 
-        <EuiFormRow label="Добавить уровень важности правила">
-          <EuiFieldText
-            onChange={(e) => changeFieldHandler(e, setRuleLevel)}
-            value={ruleLevel}
-            type="number"
-            min={0}
-            max={16}
-            isInvalid={checkers.ruleLevel && !ruleLevel}
-          />
-        </EuiFormRow>
-
-        <EuiFormRow label="Добавить описание">
-          <EuiFieldText
-            style={{ maxWidth: "810px", width: "810px" }}
-            fullWidth
-            onChange={(e) => changeFieldHandler(e, setRuleDescription)}
-            value={ruleDescription}
-            type="text"
-            isInvalid={checkers.ruleDesc && !ruleDescription}
-          />
-        </EuiFormRow>
-
-        <ParameterList
-          parametersList={ruleAttributesList}
-          setParametersList={setRuleAttributesList}
-          options={createOptions(EOptionAttributes)}
-        />
-
-        <ParameterList
-          parametersList={ruleChildrenList}
-          setParametersList={setRuleChildrenList}
-          options={createOptions(EOptionParameters)}
-        />
+              <EuiFlexItem>
+                <ParameterList
+                    parametersList={ruleChildrenList}
+                    setParametersList={setRuleChildrenList}
+                    options={createOptions(EOptionParameters)}
+                    parameterType="children"
+                />
+              </EuiFlexItem>
+            </EuiFlexGroup>
+          </EuiFlexItem>
+        </EuiFlexGroup>
       </EuiPanel>
       <EuiSpacer size="l" />
     </>
