@@ -1,6 +1,5 @@
 import { useState, Fragment } from "react";
 import "@elastic/eui/dist/eui_theme_light.css";
-
 import {
   EuiPage,
   EuiFlexItem,
@@ -9,192 +8,113 @@ import {
   EuiFormRow,
   EuiFieldText,
   EuiButton,
-  EuiPanel,
-  EuiButtonEmpty,
-  EuiTabs,
-  EuiTab,
+  EuiText,
   EuiSpacer,
-  EuiPopover,
-  EuiContextMenu,
-  EuiButtonIcon,
+  EuiSwitch,
 } from "@elastic/eui";
-
 import uuid from "uuid/v4";
 
-import changeFieldHandler from "../utils/change-field-handler";
-import { IRuleChildren, ITab } from "../types";
-import convertToIndentCode from "../utils/create-rule-tag";
-import loadXML from "../utils/load-xml";
+import { IDecoderChildren } from "../types";
 
-import RuleXMLConstructor from "../components/RuleXMLConstructor/RuleXMLConstructor";
-import XMLTextView from "../components/RuleXMLText/RuleXMLText";
+import changeFieldHandler from "../utils/change-field-handler";
+import convertToIndentCode from "../utils/create-rule-tag";
+import loadXML from "../utils/load-decoders-xml";
+
+import DecodersXMLConstructor from "@/App/pages/Constructor/components/DecoderXMLConstructor/DecoderXMLConstructor";
+import DecodersXMLText from "@/App/pages/Constructor/components/DecoderXMLText/DecoderXMLText";
+import WzRestartClusterManagerCallout from '../components/RestartClusterManagerCallout/WzRestartClusterManagerCalloute';
 
 import { RulesetHandler } from "../classes/RulesClass";
+import { validateFilenameExtension } from "../utils/validate-filename-extension";
 
-export const checkFilenameXMLExtension = (filename: string): string => {
-  let filenameParams = filename.split(".");
-  if (filenameParams.includes("xml")) {
-    return filename;
-  }
-  return filename + ".xml";
-};
-
-const DecodersPage = () => {
-  const initialRules = [
+const RulesPage = () => {
+  const initialDecodersState = [
     {
-      id: "1",
+      id: uuid(),
       nodeName: "rule",
-      value: "Initial Rule 1",
+      attributes: new Map(),
       children: [],
-      attributes: new Map([
-        ["id", "1"],
-        ["level", "1"],
-      ]),
+      value: "",
     },
   ];
 
   const [isLoading, setIsLoading] = useState(false);
-  const [isHelpPopupOpened, setHelpPopupOpened] = useState(false);
-  const [selectedTab, setSelectedTab] = useState("constructor");
+  const [isConstructorMode, setIsConstructorMode] = useState<boolean>(true);
 
-  const [rules, setRules] = useState<IRuleChildren[]>(initialRules);
+  const [decoders, setDecoders] = useState<IDecoderChildren[]>(initialDecodersState);
 
   const [fileName, setFileName] = useState("");
   const [comments, setComments] = useState<string[]>([]);
   const [groupName, setGroupName] = useState("");
 
-  const [showWarningRestart, setShowWarningRestart] = useState(false);
+  const [isWazuhMangerRestartAlert, setIsWazuhMangerRestartAlert] = useState(false);
 
   const [isFieldsFilled, setFieldsFilled] = useState(true);
-  const [isFileNameFilled, setFileNameFilled] = useState(false);
-  const [isGroupNameFilled, setGroupNameFilled] = useState(false);
-  const [isRuleSerialFilled, setRuleSerialFilled] = useState(false);
-  const [isRuleLevelFilled, setRuleLevelFilled] = useState(false);
-  const [isDescFilled, setDescFilled] = useState(false);
+  const [isFileNameValid, setFileNameValid] = useState(false);
+  const [isDecoderName, setDecoderName] = useState(false);
 
   const loadXMLHandler = (xmlString: string) => {
-    if (xmlString === undefined || xmlString === null || xmlString === "") {
+    if (!xmlString || xmlString.trim() === "") {
       alert("Please Copy and Paste XML in the text area");
       return false;
     }
-    const { rules, groupName, comments } = loadXML(xmlString);
-    setRules(rules);
-    setGroupName(groupName);
+    const { decoders, comments } = loadXML(xmlString);
+    setDecoders(decoders);
     setComments(comments);
     return true;
   };
 
-  const onTabChange = (id: string) => {
-    setSelectedTab(id);
+  const onSwitchChange = () => {
+    setIsConstructorMode(prevState => !prevState);
   };
 
-  const addRule = (obj: IRuleChildren, index: number = 0) => {
-    setRules((prev) => {
+  const addDecoder = (obj: IDecoderChildren, index: number = 0) => {
+    setDecoders((prev) => {
       const arr = [...prev];
       arr.splice(index, 0, obj);
       return arr;
     });
   };
 
-  const deleteRule = (id: string) => {
-    setRules((prev) => prev.filter((item) => item.id !== id));
+  const deleteDecoder = (id: string) => {
+    setDecoders((prev) => prev.filter((item) => item.id !== id));
   };
 
-  const updateRule = (newRule: IRuleChildren) => {
-    setRules((prev) => {
-      return prev.map((rule) => (rule.id === newRule.id ? newRule : rule));
+  const updateDecoder = (newDecoder: IDecoderChildren) => {
+    setDecoders((prev) => {
+      return prev.map((decoder) => (decoder.id === newDecoder.id ? newDecoder : decoder));
     });
   };
 
-  const checkFields = () => {
-    if (fileName === "") {
-      setFileNameFilled(true);
-    } else {
-      setFileNameFilled(false);
-    }
-    if (groupName === "") {
-      setGroupNameFilled(true);
-    } else {
-      setGroupNameFilled(false);
-    }
-    rules.forEach((item) => {
-      if (item.attributes.get("id") === "") {
-        setRuleSerialFilled(true);
-      } else {
-        setRuleSerialFilled(false);
-      }
-      if (item.attributes.get("level") === "") {
-        setRuleLevelFilled(true);
-      } else {
-        setRuleLevelFilled(false);
-      }
-      if (item.children[0].value === "") {
-        setDescFilled(true);
-      } else {
-        setDescFilled(false);
-      }
-    });
+  const validateFields = () => {
+    setFileNameValid(!!fileName);
   };
 
-  const renderTabs = (tabs: ITab[]): JSX.Element[] => {
-    return tabs.map((item) => {
-      return (
-        <EuiTab
-          key={item.id}
-          onClick={() => onTabChange(item.id)}
-          title={item.label}
-          isSelected={item.id === selectedTab}
-        >
-          {item.label}
-        </EuiTab>
-      );
-    });
-  };
-
-  const deleteAll = () => {
+  const resetForm = () => {
     setFieldsFilled(true);
-    setFileNameFilled(false);
-    setGroupNameFilled(false);
-    setRuleSerialFilled(false);
-    setRuleLevelFilled(false);
-    setDescFilled(false);
-    setRules([
+    setDecoderName(false);
+    setDecoders([
       {
         id: uuid(),
         attributes: new Map(),
         children: [],
-        value: "",
-        nodeName: "rule",
+        value: '',
+        nodeName: 'decoder',
       },
     ]);
-    setGroupName("");
     setComments([]);
+    setFileName('');
   };
 
   const saveFile = async () => {
     try {
-      checkFields();
-      if (
-        fileName &&
-        groupName !== "" &&
-        rules.every((rule) => {
-          return (
-            rule.children[0].value !== "" &&
-            rule.attributes.get("level") !== "" &&
-            rule.attributes.get("id") !== ""
-          );
-        })
-      ) {
-        const rulesetHandler = new RulesetHandler("rules");
-        const content = convertToIndentCode(rules, null, comments, groupName);
-        await rulesetHandler.updateFile(
-          checkFilenameXMLExtension(fileName),
-          content,
-          true
-        );
-        setShowWarningRestart(true);
+      if (fileName && decoders.every((decoder) => decoder.attributes.get('name') !== '')) {
+        const rulesetHandler = new RulesetHandler('decoders');
+        const content = convertToIndentCode(null, decoders, comments);
+        await rulesetHandler.updateFile(validateFilenameExtension(fileName), content, true);
+        setIsWazuhMangerRestartAlert(true);
         setFieldsFilled(true);
-        deleteAll();
+        resetForm();
         setFileName("");
       } else {
         setFieldsFilled(false);
@@ -204,208 +124,147 @@ const DecodersPage = () => {
     }
   };
 
-  const tabContent = () => {
-    if (selectedTab === "constructor") {
-      return (
-        <RuleXMLConstructor
-          checkers={{
-            ruleSerial: isRuleSerialFilled,
-            ruleLevel: isRuleLevelFilled,
-            ruleDesc: isDescFilled,
-          }}
-          addRule={addRule}
-          deleteRule={deleteRule}
-          updateRule={updateRule}
-          rules={rules}
-        />
-      );
-    }
-
+  const renderXMLConstructor = () => {
     return (
-      <XMLTextView
-        rules={rules}
-        groupName={groupName}
-        comments={comments}
-        loadXMLHandler={loadXMLHandler}
-      />
+        <DecodersXMLConstructor
+            addDecoder={addDecoder}
+            deleteDecoder={deleteDecoder}
+            updateDecoder={updateDecoder}
+            decoders={decoders}
+            checkers={{ decoderName: isDecoderName }}
+        />
     );
   };
 
-  const helpButton = (
-    <EuiButtonIcon
-      onClick={() => setHelpPopupOpened(true)}
-      iconType="questionInCircle"
-      aria-label="Heart"
-    />
-  );
-
-  const helpPanels = [
-    {
-      id: 0,
-      title: "Подробнее об этом разделе",
-      items: [
-        {
-          name: "Синтаксис правил",
-          onClick: (ev) => {
-            setHelpPopupOpened(true);
-            console.log(
-              `AppNavigate.navigateToModule(ev, 'manager', { tab: 'helpPage' });`
-            );
-          },
-        },
-      ],
-    },
-  ];
+  const renderTextConstructor = () => {
+    return (
+        <DecodersXMLText
+            decoders={decoders}
+            comments={comments}
+            loadXMLHandler={loadXMLHandler}
+        />
+    );
+  };
 
   return (
-    <EuiPage style={{ padding: "30px" }}>
-      <EuiFlexGroup direction="column">
-        <EuiFlexGroup
-          style={{ padding: "20px", display: "flex", alignItems: "center" }}
-        >
+      <EuiPage style={{ padding: "30px" }}>
+        <EuiFlexGroup direction="column">
+
           <EuiFlexItem>
-            <EuiTitle>
-              <h1>Конструктор XML</h1>
+            <EuiTitle size="m">
+              <h1>Конструктор декодеров</h1>
             </EuiTitle>
           </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiPopover
-              button={helpButton}
-              isOpen={isHelpPopupOpened}
-              closePopover={() => {
-                setHelpPopupOpened(false);
-              }}
-              panelPaddingSize="none"
-            >
-              <EuiContextMenu initialPanelId={0} panels={helpPanels} />
-            </EuiPopover>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiButtonEmpty
-              onClick={(ev) => {
-                console.log(
-                  `AppNavigate.navigateToModule(ev, 'manager', { tab: 'rules' });`
-                );
-              }}
-              iconType="folderClosed"
-            >
-              Редактировать существующие правила
-            </EuiButtonEmpty>
-          </EuiFlexItem>
-          <EuiFlexItem grow={false}>
-            <EuiButtonEmpty onClick={() => {}} iconType="exportAction">
-              Экспорт в формате
-            </EuiButtonEmpty>
-          </EuiFlexItem>
-        </EuiFlexGroup>
 
-        <EuiFlexItem grow={false}>
-          <EuiFormRow
-            label={<div style={{ fontSize: "16px" }}>Имя XML файла</div>}
-          >
-            <EuiFieldText
-              value={fileName}
-              onChange={(e) => {
-                changeFieldHandler(e, setFileName);
-              }}
-              type="text"
-              className="filename_input"
-              isInvalid={isFileNameFilled && !fileName}
-            />
-          </EuiFormRow>
-        </EuiFlexItem>
-
-        <EuiTabs size="m"></EuiTabs>
-        {!isLoading && (
           <EuiFlexItem>
-            <EuiPage>
-              <EuiFlexGroup direction={"column"}>
-                <EuiPanel style={{ padding: "0 40px 20px 40px" }}>
-                  {selectedTab === "constructor" && (
-                    <>
-                      <EuiFlexGroup
-                        style={{ marginTop: "20px" }}
-                        alignItems={"center"}
-                        justifyContent={"spaceBetween"}
-                      >
-                        <EuiFlexItem style={{ marginLeft: 0 }} grow={false}>
-                          <p
-                            className="euiText"
-                            style={{
-                              alignSelf: "flex-start",
-                              color: "red",
-                              paddingBottom: "15px",
-                            }}
-                          >
-                            {isFieldsFilled ||
-                            (fileName &&
-                              groupName &&
-                              rules.every((rule) => {
-                                return (
-                                  rule.children[0].value !== "" &&
-                                  rule.attributes.get("level") !== "" &&
-                                  rule.attributes.get("id") !== ""
-                                );
-                              }))
-                              ? ""
-                              : "Заполните все обязательные поля!"}
-                          </p>
-                          <EuiFormRow label={<h3>Задать имя группы</h3>}>
-                            <EuiFieldText
-                              value={groupName}
-                              onChange={(e) => {
-                                changeFieldHandler(e, setGroupName);
-                              }}
-                              isInvalid={isGroupNameFilled && !groupName}
-                              type="text"
-                            />
-                          </EuiFormRow>
-                        </EuiFlexItem>
-                        <EuiFlexGroup justifyContent={"flexEnd"}>
-                          <EuiFlexItem grow={false}>
-                            <EuiButton
-                              onClick={deleteAll}
-                              fill
-                              color={"danger"}
-                            >
-                              Очистить
-                            </EuiButton>
-                          </EuiFlexItem>
-                          <EuiFlexItem grow={false}>
-                            <EuiButton
-                              onClick={saveFile}
-                              fill
-                              color={"primary"}
-                            >
-                              Сохранить
-                            </EuiButton>
-                          </EuiFlexItem>
-                        </EuiFlexGroup>
-                      </EuiFlexGroup>
-                      <EuiSpacer size="l" />
-                      {showWarningRestart && (
-                        <Fragment>
-                          {/* <WzRestartClusterManagerCallout
-                              onRestarted={() => setShowWarningRestart(false)}
-                              onRestartedError={() =>
-                                setShowWarningRestart(false)
-                              }
-                            /> */}
-                          <div>WzRestartClusterManagerCallout</div>
-                          <EuiSpacer size="s" />
-                        </Fragment>
-                      )}
-                    </>
-                  )}
-                  {tabContent()}
-                </EuiPanel>
-              </EuiFlexGroup>
-            </EuiPage>
+
+            <EuiFlexGroup justifyContent="spaceBetween">
+              <EuiFlexItem>
+                <EuiText size="m" style={{marginBottom: '15px'}}>
+                  Отразить в виде:
+                </EuiText>
+                <EuiSwitch
+                    label="Конструктор / Текст"
+                    checked={isConstructorMode}
+                    onChange={onSwitchChange}
+                />
+              </EuiFlexItem>
+
+              <EuiFlexItem>
+                <EuiFlexGroup justifyContent={"flexEnd"}>
+
+                  <EuiFlexItem grow={false}>
+                    <EuiButton
+                        onClick={() => {}}
+                        iconType="questionInCircle"
+                        iconSide="right"
+                    >
+                      Справочник
+                    </EuiButton>
+                  </EuiFlexItem>
+
+                  <EuiFlexItem grow={false}>
+                    <EuiButton
+                        onClick={resetForm}
+                        color="danger"
+                        iconType="refresh"
+                        iconSide="right"
+                    >
+                      Очистить форму
+                    </EuiButton>
+                  </EuiFlexItem>
+
+                  <EuiFlexItem grow={false}>
+                    <EuiButton
+                        onClick={saveFile}
+                        color="secondary"
+                        fill
+                        iconType="save"
+                        iconSide="right"
+                    >
+                      Сохранить
+                    </EuiButton>
+                  </EuiFlexItem>
+                </EuiFlexGroup>
+              </EuiFlexItem>
+            </EuiFlexGroup>
           </EuiFlexItem>
-        )}
-      </EuiFlexGroup>
-    </EuiPage>
+
+          <EuiFlexItem>
+            <EuiFormRow
+                label="Имя XML файла:"
+                fullWidth
+                helpText="wazuh-rules-example"
+            >
+              <EuiFieldText
+                  value={fileName}
+                  onChange={(e) => {
+                    changeFieldHandler(e, setFileName);
+                  }}
+                  type="text"
+                  className="filename_input"
+                  isInvalid={!fileName && isFileNameValid}
+                  fullWidth
+              />
+            </EuiFormRow>
+          </EuiFlexItem>
+
+          {!isLoading && (
+              <EuiFlexItem>
+                {isConstructorMode && (
+                    <EuiFlexGroup direction="column" gutterSize="m">
+                      <EuiFlexItem>
+                        <p
+                            className="euiText"
+                            style={{ alignSelf: 'flex-start', color: 'red', paddingBottom: '15px' }}
+                        >
+                          {isFieldsFilled ||
+                          (fileName &&
+                              decoders.every((decoder) => decoder.attributes.get('name') !== ''))
+                              ? ''
+                              : 'Заполните все обязательные поля!'}
+                        </p>
+                      </EuiFlexItem>
+
+                      {isWazuhMangerRestartAlert && (
+                          <Fragment>
+                            <WzRestartClusterManagerCallout
+                                onRestarted={() => setIsWazuhMangerRestartAlert(false)}
+                                onRestartedError={() => setIsWazuhMangerRestartAlert(false)}
+                            />
+                            <EuiSpacer size="s" />
+                          </Fragment>
+                      )}
+                    </EuiFlexGroup>
+                )}
+                {isConstructorMode
+                    ? renderXMLConstructor()
+                    : renderTextConstructor()}
+              </EuiFlexItem>
+          )}
+        </EuiFlexGroup>
+      </EuiPage>
   );
 };
 
-export default DecodersPage;
+export default RulesPage;
