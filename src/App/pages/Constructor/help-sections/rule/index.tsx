@@ -1,6 +1,6 @@
 import React from 'react';
 import { EuiBasicTable, EuiCodeBlock, EuiFlexItem, EuiText, EuiTitle } from '@elastic/eui';
-import { rules } from '../../constants/help-info';
+import { rules } from '../../constants/HelpSectionsInfo';
 
 export const Rule = () => {
   const rulesColumns = [

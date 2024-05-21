@@ -5,8 +5,8 @@ import uuid from 'uuid/v4';
 import type { IParameter, IDecoderChildren } from '../../types';
 
 import DecoderItem from '@/App/pages/Constructor/components/Decoder/DecoderItem';
-import EOptionAttributes from '../../constants/option-attributes-list';
-import EOptionParameters from '../../constants/decoders-option-parameters';
+import ERuleAttributes from '../../constants/RuleAttributes';
+import EDecoderParameters from '../../constants/DecoderParameters';
 
 interface IXMLConstructorProps {
   addDecoder: (decoder: IDecoderChildren, index) => void;
@@ -27,7 +27,7 @@ const XMLConstructor = (props: IXMLConstructorProps) => {
     let description = '';
 
     decoder.attributes.forEach((value, key) => {
-      if (EOptionAttributes[key] && value) {
+      if (ERuleAttributes[key] && value) {
         attributesList.push({
           value,
           name: key,
@@ -37,7 +37,7 @@ const XMLConstructor = (props: IXMLConstructorProps) => {
     });
 
     decoder.children.forEach((child) => {
-      if (EOptionParameters[child.nodeName]) {
+      if (EDecoderParameters[child.nodeName]) {
         if (child.value) {
           parametersList.push({
             value: child.value,

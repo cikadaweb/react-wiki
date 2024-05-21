@@ -13,7 +13,7 @@ import {
   EuiCallOut,
   EuiSpacer,
 } from "@elastic/eui";
-import { items } from "../constants/help-info";
+import { items } from "../constants/HelpSectionsInfo";
 import { Srcip } from "../help-sections/srcip";
 import { Dstip } from "../help-sections/dstip";
 import { Srcport } from "../help-sections/srcport";

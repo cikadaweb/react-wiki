@@ -9,7 +9,7 @@ import {
 
 import type { IDecoderChildren, IRuleChildren } from "../../types";
 
-import convertToIndentCode from "../../utils/create-rule-tag";
+import convertToIndentCode from "../../utils/CreateRuleTag";
 
 import "./XMLText.css";
 interface IXMLTextViewProps {

@@ -12,12 +12,12 @@ import {
 import uuid from 'uuid/v4';
 
 import type { IParameter, IRuleChildren } from "../../types";
-import EOptionAttributes from "../../constants/option-attributes-list";
-import EOptionParameters from "../../constants/option-parameters";
+import ERuleAttributes from "../../constants/RuleAttributes";
+import ERuleParameters from "../../constants/RuleParameters";
 
 import { ParameterList } from "../ParameterList/ParameterList";
-import changeFieldHandler from "../../utils/change-field-handler";
-import createOptions from "../../utils/create-options";
+import changeFieldHandler from "../../utils/ChangeFieldHandler";
+import createOptions from "../../utils/CreateOptions";
 
 interface IRuleItemProps {
   serial: string;
@@ -256,7 +256,7 @@ const RuleItem = (props: IRuleItemProps) => {
                 <ParameterList
                     parametersList={ruleAttributesList}
                     setParametersList={setRuleAttributesList}
-                    options={createOptions(EOptionAttributes)}
+                    options={createOptions(ERuleAttributes)}
                     parameterType="attribute"
                 />
               </EuiFlexItem>
@@ -265,7 +265,7 @@ const RuleItem = (props: IRuleItemProps) => {
                 <ParameterList
                     parametersList={ruleChildrenList}
                     setParametersList={setRuleChildrenList}
-                    options={createOptions(EOptionParameters)}
+                    options={createOptions(ERuleParameters)}
                     parameterType="children"
                 />
               </EuiFlexItem>

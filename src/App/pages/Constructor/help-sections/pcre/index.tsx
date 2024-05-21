@@ -8,7 +8,7 @@ import {
   EuiText,
   EuiTitle,
 } from '@elastic/eui';
-import { pcre, quantifiers } from '../../constants/help-info';
+import { pcre, quantifiers } from '../../constants/HelpSectionsInfo';
 
 export const Pcre = () => {
   const xmlCode = ` <decoder>

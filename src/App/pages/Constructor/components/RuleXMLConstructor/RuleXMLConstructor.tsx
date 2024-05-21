@@ -4,8 +4,8 @@ import uuid from "uuid/v4";
 import type { IParameter, IRuleChildren } from "../../types";
 
 import RuleItem from "@/App/pages/Constructor/components/Rule/RuleItem";
-import EOptionAttributes from "../../constants/option-attributes-list";
-import EOptionParameters from "../../constants/option-parameters";
+import ERuleAttributes from "../../constants/RuleAttributes";
+import ERuleParameters from "../../constants/RuleParameters";
 
 interface IXMLConstructorProps {
   addRule: (rule: IRuleChildren, index) => void;
@@ -27,7 +27,7 @@ const RuleXMLConstructor = (props: IXMLConstructorProps) => {
     let description = "";
 
     rule.attributes.forEach((value, key) => {
-      if (EOptionAttributes[key] && value) {
+      if (ERuleAttributes[key] && value) {
         attributesList.push({
           value,
           name: key,
@@ -37,7 +37,7 @@ const RuleXMLConstructor = (props: IXMLConstructorProps) => {
     });
 
     rule.children.forEach((child) => {
-      if (EOptionParameters[child.nodeName]) {
+      if (ERuleParameters[child.nodeName]) {
         if (child.value) {
           if (child.nodeName === "group") {
             const value = child.value.replace(/,\s*$/, "");

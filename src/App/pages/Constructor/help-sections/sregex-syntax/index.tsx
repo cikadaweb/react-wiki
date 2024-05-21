@@ -1,6 +1,6 @@
 import React from 'react';
 import { EuiBasicTable, EuiFlexItem, EuiSpacer, EuiText, EuiTitle } from '@elastic/eui';
-import { sregex } from '../../constants/help-info';
+import { sregex } from '../../constants/HelpSectionsInfo';
 
 export const SregexSyntax = () => {
   return (

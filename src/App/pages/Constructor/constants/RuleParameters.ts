@@ -1,4 +1,4 @@
-enum EOptionParameters {
+enum ERuleParameters {
   'decoded_as' = 'Имя декодера',
   'match' = 'match',
   'category' = 'Типы журналов',
@@ -73,4 +73,4 @@ enum EOptionParameters {
   'var' = 'Задать переменную',
 }
 
-export default EOptionParameters;
+export default ERuleParameters;

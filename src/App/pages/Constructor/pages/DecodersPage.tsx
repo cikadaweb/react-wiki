@@ -16,16 +16,16 @@ import uuid from "uuid/v4";
 
 import { IDecoderChildren } from "../types";
 
-import changeFieldHandler from "../utils/change-field-handler";
-import convertToIndentCode from "../utils/create-rule-tag";
-import loadXML from "../utils/load-decoders-xml";
+import changeFieldHandler from "../utils/ChangeFieldHandler";
+import convertToIndentCode from "../utils/CreateRuleTag";
+import loadXML from "../utils/LoadDecodersXML";
 
 import DecodersXMLConstructor from "@/App/pages/Constructor/components/DecoderXMLConstructor/DecoderXMLConstructor";
 import DecodersXMLText from "@/App/pages/Constructor/components/DecoderXMLText/DecoderXMLText";
 import WzRestartClusterManagerCallout from '../components/RestartClusterManagerCallout/WzRestartClusterManagerCalloute';
 
 import { RulesetHandler } from "../classes/RulesClass";
-import { validateFilenameExtension } from "../utils/validate-filename-extension";
+import { validateFilenameExtension } from "../utils/ValidateFilenameExtension";
 
 const RulesPage = () => {
   const initialDecodersState = [

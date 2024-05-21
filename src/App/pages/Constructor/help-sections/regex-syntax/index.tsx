@@ -1,6 +1,6 @@
 import React from 'react';
 import { EuiBasicTable, EuiCode, EuiFlexItem, EuiSpacer, EuiText, EuiTitle } from '@elastic/eui';
-import { modifiers, regex, specSymbols } from '../../constants/help-info';
+import { modifiers, regex, specSymbols } from '../../constants/HelpSectionsInfo';
 
 export const RegexSyntax = () => {
   return (

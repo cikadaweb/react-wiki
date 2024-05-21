@@ -1,4 +1,4 @@
-enum EOptionParameters {
+enum EDecoderParameters {
   'parent' = 'Родительский элемент',
   'program_name' = 'Имя программы',
   'prematch' = 'Подставляющееся выражение',
@@ -12,4 +12,4 @@ enum EOptionParameters {
   'type' = 'Тип логов',
 }
 
-export default EOptionParameters
+export default EDecoderParameters;

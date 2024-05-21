@@ -9,7 +9,7 @@ import {
 } from "@elastic/eui";
 import React, { ChangeEvent, useState, useEffect } from "react";
 import type { IOption } from "../../types";
-import parametersValue from "../../constants/parameters-value";
+import parametersValue from "../../constants/ParametersValue";
 
 import "./Parameter.css";
 interface IProps {

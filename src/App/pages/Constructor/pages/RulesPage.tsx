@@ -16,16 +16,16 @@ import uuid from "uuid/v4";
 
 import { IRuleChildren } from "../types";
 
-import changeFieldHandler from "../utils/change-field-handler";
-import convertToIndentCode from "../utils/create-rule-tag";
-import loadXML from "../utils/load-xml";
+import changeFieldHandler from "../utils/ChangeFieldHandler";
+import convertToIndentCode from "../utils/CreateRuleTag";
+import loadXML from "../utils/LoadXML";
 
 import RuleXMLConstructor from "../components/RuleXMLConstructor/RuleXMLConstructor";
 import RuleXMLText from "../components/RuleXMLText/RuleXMLText";
 import WzRestartClusterManagerCallout from '../components/RestartClusterManagerCallout/WzRestartClusterManagerCalloute';
 
 import { RulesetHandler } from "../classes/RulesClass";
-import { validateFilenameExtension } from "../utils/validate-filename-extension";
+import { validateFilenameExtension } from "../utils/ValidateFilenameExtension";
 
 const RulesPage = () => {
   const initialRulesState = [

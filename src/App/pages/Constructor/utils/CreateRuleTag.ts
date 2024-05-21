@@ -1,7 +1,7 @@
 import type { IDecoderChildren, IRuleChildren } from '../types';
 
-import EOptionAttributes from '../constants/option-attributes-list';
-import EOptionParameters from '../constants/option-parameters';
+import ERuleAttributes from '../constants/RuleAttributes';
+import ERuleParameters from '../constants/RuleParameters';
 
 type TXMLView = Array<string | string[]>;
 
@@ -32,7 +32,7 @@ const createChildTag = (child: IRuleChildren | IDecoderChildren, spaces) => {
 
   if (child.attributes.size > 0) {
     child.attributes.forEach((value, key) => {
-      if (EOptionAttributes[key]) {
+      if (ERuleAttributes[key]) {
         if (value) {
           attributes.push(` ${key}="${value}"`);
         }
@@ -72,7 +72,7 @@ const createChildTag = (child: IRuleChildren | IDecoderChildren, spaces) => {
     );
   };
 
-  if (EOptionParameters[child.nodeName] || child.nodeName === 'rule' || child.nodeName === 'decoder') {
+  if (ERuleParameters[child.nodeName] || child.nodeName === 'rule' || child.nodeName === 'decoder') {
     if (children.length > 0) {
       return tagWithChildren;
     }

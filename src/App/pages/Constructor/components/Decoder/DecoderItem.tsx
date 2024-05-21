@@ -11,11 +11,11 @@ import {
 import uuid from 'uuid/v4';
 
 import type { IParameter, IDecoderChildren } from '../../types';
-import EOptionParameters from '../../constants/decoders-option-parameters';
+import EDecoderParameters from '../../constants/DecoderParameters';
 
 import { ParameterList } from '../ParameterList/ParameterList';
-import changeFieldHandler from '../../utils/change-field-handler';
-import createOptions from '../../utils/create-options';
+import changeFieldHandler from '../../utils/ChangeFieldHandler';
+import createOptions from '../../utils/CreateOptions';
 
 interface IDecoderTemplateProps {
   name: string;
@@ -171,7 +171,7 @@ const DecoderTemplate = (props: IDecoderTemplateProps) => {
         <ParameterList
           parametersList={decoderChildrenList}
           setParametersList={setDecoderChildrenList}
-          options={createOptions(EOptionParameters)}
+          options={createOptions(EDecoderParameters)}
           parameterType="children"
         />
       </EuiPanel>

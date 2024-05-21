@@ -1,4 +1,4 @@
-enum EOptionAttributes {
+enum ERuleAttributes {
   'timeframe' = 'Временной интервал',
   'frequency' = 'Частота наступления события',
   'ignore' = 'Время игнорирования',
@@ -7,4 +7,4 @@ enum EOptionAttributes {
   'overwrite' = 'Перезапись',
 }
 
-export default EOptionAttributes;
+export default ERuleAttributes;
