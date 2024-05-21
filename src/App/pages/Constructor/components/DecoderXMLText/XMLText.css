@@ -1,0 +1,9 @@
+.text-view-element {
+  margin-left: 15px;
+  margin-right: 15px;
+  line-height: 20px;
+}
+
+.text-view-tag {
+  color: #a10606;
+}

@@ -43,6 +43,7 @@ const Parameter = (props: IProps) => {
     isDeleteButtonShown,
     parameterType
   } = props;
+
   const [isEdit, setIsEdit] = useState(false);
   const [values, setValues] = useState([]);
 
